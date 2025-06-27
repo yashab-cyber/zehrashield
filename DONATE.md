@@ -1,4 +1,4 @@
-# 💰 Support ZehraSec Advanced Firewall Development
+# 💰 Support ZehraShield Development
 
 ![Version](https://img.shields.io/badge/version-3.0.0-green.svg)
 ![Donations](https://img.shields.io/badge/donations-welcome-brightgreen.svg)
@@ -8,7 +8,7 @@
 
 ## 🙏 Why Your Support Matters
 
-**ZehraSec Advanced Firewall** is an enterprise-grade, 6-layer security solution created by **Yashab Alam**, founder and CEO of ZehraSec. Your donations help us:
+**ZehraShield** is an enterprise-grade, 6-layer security solution created by **Yashab Alam**, founder and CEO of ZehraSec. Your donations help us:
 
 - 🚀 **Accelerate Development** - New security layers, AI/ML enhancements, and zero-trust features
 - 🔒 **Enhanced Protection** - Advanced threat intelligence, behavioral analysis, and zero-day detection
@@ -257,7 +257,7 @@ All payment methods are verified and legitimate. For security concerns:
 
 ## 🎉 **Thank You!**
 
-Every contribution, no matter the size, helps make ZehraSec Advanced Firewall better for everyone. Your support directly impacts:
+Every contribution, no matter the size, helps make ZehraShield better for everyone. Your support directly impacts:
 
 - 🔒 **Cybersecurity professionals** worldwide
 - 🎓 **Security students** learning advanced threat detection
@@ -278,7 +278,7 @@ Every contribution, no matter the size, helps make ZehraSec Advanced Firewall be
 | **Total Raised** | $0 (Starting Goal) |
 | **Active Supporters** | 0 |
 | **Countries Represented** | 0 |
-| **GitHub Stars** | ⭐ [Check Live Count](https://github.com/yashab-cyber/ZehraSec-Advanced-Firewall) |
+| **GitHub Stars** | ⭐ [Check Live Count](https://github.com/yashab-cyber/zehrashield) |
 
 ---
 
@@ -290,6 +290,6 @@ Every contribution, no matter the size, helps make ZehraSec Advanced Firewall be
 
 **🛡️ Made with ❤️ by Yashab Alam and the ZehraSec team**
 
-**Repository:** [github.com/yashab-cyber/ZehraSec-Advanced-Firewall](https://github.com/yashab-cyber/ZehraSec-Advanced-Firewall)
+**Repository:** [github.com/yashab-cyber/zehrashield](https://github.com/yashab-cyber/zehrashield)
 
 *Last updated: June 2025*

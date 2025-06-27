@@ -1,11 +1,27 @@
-# Copyright Notice - ZehraSec Advanced Firewall
+# Copyright Notice - ZehraShield
 
 ## 🔒 **COPYRIGHT STATEMENT**
 
 **Copyright © 2025 ZehraSec - Yashab Alam**  
-**ALL RIGHTS RESERVED**
+**ALL RIGHTS #### **Minimum Attribution**
+```
+Powered by ZehraShield
+Copyright © 2025 ZehraSec - Yashab Alam
+```
 
-This software and its documentation are protected by copyright law and international treaties. Unauthorized reproduction, distribution, or modification is strictly prohibited and may result in severe civil and criminal penalties.
+#### **Complete Attribution**
+```
+This application uses ZehraShield
+Copyright © 2025 ZehraSec - Yashab Alam
+https://github.com/yashab-cyber/zehrashield
+Licensed under Enterprise License Agreement
+```
+
+#### **Academic Citation**
+```
+Alam, Y. (2025). ZehraShield: 6-Layer Enterprise Security System. 
+ZehraSec. https://github.com/yashab-cyber/zehrashield
+```software and its documentation are protected by copyright law and international treaties. Unauthorized reproduction, distribution, or modification is strictly prohibited and may result in severe civil and criminal penalties.
 
 ---
 
@@ -137,14 +153,14 @@ Copyright © 2025 ZehraSec - Yashab Alam
 ```
 This application uses ZehraSec Advanced Firewall
 Copyright © 2025 ZehraSec - Yashab Alam
-https://github.com/yashab-cyber/ZehraSec-Advanced-Firewall
+https://github.com/yashab-cyber/zehrashield
 Licensed under Enterprise License Agreement
 ```
 
 #### **Academic Citation**
 ```
 Alam, Y. (2025). ZehraSec Advanced Firewall: 6-Layer Enterprise Security System. 
-ZehraSec. https://github.com/yashab-cyber/ZehraSec-Advanced-Firewall
+ZehraSec. https://github.com/yashab-cyber/zehrashield
 ```
 
 ### 📍 **Attribution Placement**
@@ -208,7 +224,7 @@ This copyright notice is authentic and legally binding. For verification:
 
 ---
 
-*This document constitutes the official copyright notice for ZehraSec Advanced Firewall and is legally binding. Violation of these terms may result in legal action.*
+*This document constitutes the official copyright notice for ZehraShield and is legally binding. Violation of these terms may result in legal action.*
 
 **ZehraSec - Securing the Digital Future**  
 *Copyright © 2025 - All Rights Reserved*

@@ -1,8 +1,8 @@
-# ZehraSec Advanced 6-Layer Firewall System
+# ZehraShield Advanced 6-Layer Firewall System
 
 ## 🛡️ World-Class Enterprise Security Solution
 
-**ZehraSec Advanced Firewall** is an enterprise-grade, multi-platform firewall system featuring 6 layers of comprehensive security protection. Built for cybersecurity professionals, it provides unparalleled threat detection and prevention capabilities across Linux, Windows, macOS, and Android platforms.
+**ZehraShield** is an enterprise-grade, multi-platform firewall system featuring 6 layers of comprehensive security protection. Built for cybersecurity professionals by Yashab Alam at ZehraSec, it provides unparalleled threat detection and prevention capabilities across Linux, Windows, macOS, and Android platforms.
 
 ---
 
@@ -77,7 +77,7 @@ sudo chmod +x install.sh
 sudo ./install.sh
 
 # Start the firewall
-sudo zehrasec start
+sudo zehrashield start
 
 # Access web console
 https://localhost:8443
@@ -89,7 +89,7 @@ https://localhost:8443
 .\install.ps1
 
 # Start service
-Start-Service ZehraSecFirewall
+Start-Service ZehraShieldFirewall
 
 # Access web console
 https://localhost:8443
@@ -101,7 +101,7 @@ https://localhost:8443
 sudo ./install.sh
 
 # Start service
-sudo launchctl load /Library/LaunchDaemons/com.zehrasec.firewall.plist
+sudo launchctl load /Library/LaunchDaemons/com.zehrasec.zehrashield.plist
 
 # Access web console
 https://localhost:8443
@@ -296,7 +296,7 @@ socket.on('threat_detected', (data) => {
 
 ---
 
-## 🏆 Why Choose ZehraSec?
+## 🏆 Why Choose ZehraShield?
 
 ### ✅ **Unmatched Protection**
 - 6 layers of comprehensive security
@@ -343,13 +343,14 @@ socket.on('threat_detected', (data) => {
 ## 📄 License
 
 **Enterprise License** - ZehraSec  
+Developed by Yashab Alam  
 For licensing information and enterprise pricing, contact: sales@zehrasec.com
 
 ---
 
 ## 🚀 Get Started Today
 
-Transform your network security with ZehraSec Advanced Firewall:
+Transform your network security with ZehraShield:
 
 1. **Download** the latest release
 2. **Install** using our automated scripts
@@ -359,8 +360,8 @@ Transform your network security with ZehraSec Advanced Firewall:
 
 **Ready to secure your network?** 
 
-[Download Now](https://github.com/zehrasec/advanced-firewall/releases) | [View Documentation](https://docs.zehrasec.com) | [Contact Sales](mailto:sales@zehrasec.com)
+[Download Now](https://github.com/yashab-cyber/zehrashield/releases) | [View Documentation](https://docs.zehrasec.com) | [Contact Sales](mailto:sales@zehrasec.com)
 
 ---
 
-*ZehraSec Advanced Firewall - The future of network security is here.*
+*ZehraShield - The future of network security is here.*

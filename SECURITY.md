@@ -1,6 +1,6 @@
 # Security Policy
 
-## 🛡️ ZehraSec Advanced Firewall Security Policy
+## 🛡️ ZehraShield Security Policy
 
 ZehraSec takes security seriously. This document outlines our security policy and procedures for reporting vulnerabilities.
 
@@ -37,7 +37,7 @@ We provide security updates for the following versions:
 For **critical security issues** that could compromise user safety or data:
 
 **Email**: yashabalam707@gmail.com  
-**Subject**: [CRITICAL SECURITY] ZehraSec Advanced Firewall  
+**Subject**: [CRITICAL SECURITY] ZehraShield  
 **Response Time**: Within 24 hours
 
 ### 🟡 Standard Vulnerabilities
@@ -87,7 +87,7 @@ We follow **responsible disclosure** practices:
 ### 📋 Scope
 
 **In Scope:**
-- ✅ ZehraSec Advanced Firewall core application
+- ✅ ZehraShield core application
 - ✅ Web management console
 - ✅ Mobile application
 - ✅ API endpoints

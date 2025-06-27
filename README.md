@@ -1,31 +1,31 @@
-# ZehraSec Advanced 6-Layer Firewall System
+# ZehraShield Advanced 6-Layer Firewall System
 
-[![Version](https://img.shields.io/badge/version-3.0.0-blue.svg)](https://github.com/yashab-cyber/ZehraSec-Advanced-Firewall/releases)
+[![Version](https://img.shields.io/badge/version-3.0.0-blue.svg)](https://github.com/yashab-cyber/zehrashield/releases)
 [![License](https://img.shields.io/badge/license-Enterprise-red.svg)](LICENSE)
 [![Python](https://img.shields.io/badge/python-3.8%2B-blue.svg)](https://www.python.org/)
 [![Platform](https://img.shields.io/badge/platform-Linux%20%7C%20Windows%20%7C%20macOS%20%7C%20Android-lightgrey.svg)](README.md#platform-support)
 [![Security](https://img.shields.io/badge/security-enterprise--grade-green.svg)](SECURITY.md)
-[![Maintained](https://img.shields.io/badge/maintained-yes-brightgreen.svg)](https://github.com/yashab-cyber/ZehraSec-Advanced-Firewall/commits/main)
+[![Maintained](https://img.shields.io/badge/maintained-yes-brightgreen.svg)](https://github.com/yashab-cyber/zehrashield/commits/main)
 [![Documentation](https://img.shields.io/badge/docs-complete-success.svg)](README.md)
 [![Support](https://img.shields.io/badge/support-professional-blue.svg)](mailto:yashabalam707@gmail.com)
 [![Threat Detection](https://img.shields.io/badge/threat%20detection-AI%2FML%20powered-orange.svg)](README.md#advanced-features-enterprise-edition)
 [![Zero Trust](https://img.shields.io/badge/zero%20trust-enabled-purple.svg)](README.md#advanced-features-enterprise-edition)
 [![SOAR](https://img.shields.io/badge/SOAR-automation-red.svg)](README.md#advanced-features-enterprise-edition)
 [![Performance](https://img.shields.io/badge/performance-1M%2B%20packets%2Fsec-yellow.svg)](README.md#performance-metrics)
-[![Stars](https://img.shields.io/github/stars/yashab-cyber/ZehraSec-Advanced-Firewall?style=social)](https://github.com/yashab-cyber/ZehraSec-Advanced-Firewall/stargazers)
-[![Forks](https://img.shields.io/github/forks/yashab-cyber/ZehraSec-Advanced-Firewall?style=social)](https://github.com/yashab-cyber/ZehraSec-Advanced-Firewall/network/members)
-[![Issues](https://img.shields.io/github/issues/yashab-cyber/ZehraSec-Advanced-Firewall)](https://github.com/yashab-cyber/ZehraSec-Advanced-Firewall/issues)
+[![Stars](https://img.shields.io/github/stars/yashab-cyber/zehrashield?style=social)](https://github.com/yashab-cyber/zehrashield/stargazers)
+[![Forks](https://img.shields.io/github/forks/yashab-cyber/zehrashield?style=social)](https://github.com/yashab-cyber/zehrashield/network/members)
+[![Issues](https://img.shields.io/github/issues/yashab-cyber/zehrashield)](https://github.com/yashab-cyber/zehrashield/issues)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 
 > **🛡️ World-Class Enterprise Security Solution - Protecting Digital Infrastructure Since 2025 🛡️**
 
-**ZehraSec Advanced Firewall** is an enterprise-grade, multi-platform firewall system featuring 6 layers of comprehensive security protection. Built for cybersecurity professionals, it provides unparalleled threat detection and prevention capabilities across Linux, Windows, macOS, and Android platforms.
+**ZehraShield** is an enterprise-grade, multi-platform firewall system featuring 6 layers of comprehensive security protection. Built for cybersecurity professionals by Yashab Alam at ZehraSec, it provides unparalleled threat detection and prevention capabilities across Linux, Windows, macOS, and Android platforms.
 
 <div align="center">
 
 ### 🚀 **Revolutionary Cybersecurity Innovation** 🚀
 
-[![ZehraSec Logo](https://img.shields.io/badge/🛡️-ZehraSec%20Solutions-blue?style=for-the-badge&logo=shield)](https://www.zehrasec.com)
+[![ZehraShield Logo](https://img.shields.io/badge/🛡️-ZehraShield%20by%20ZehraSec-blue?style=for-the-badge&logo=shield)](https://www.zehrasec.com)
 
 **Developed by [Yashab Alam](https://github.com/yashab-cyber) | ZehraSec**
 
@@ -177,7 +177,7 @@ https://localhost:8443
 ### 🚀 Automated Deployment (Recommended)
 ```bash
 # Clone the repository
-git clone https://github.com/yourusername/ZehraSec-Advanced-Firewall.git
+git clone https://github.com/yashab-cyber/zehrashield.git
 cd ZehraSec-Advanced-Firewall
 
 # Run automated deployment
@@ -595,7 +595,7 @@ For technical support and documentation:
 - Website: https://zehrasec.com
 - Email: support@zehrasec.com
 - Documentation: docs/
-- Community: https://github.com/zehrasec/firewall
+- Community: https://github.com/yashab-cyber/zehrashield
 
 ---
 
@@ -683,7 +683,7 @@ Your support helps us continue developing cutting-edge cybersecurity solutions. 
 
 ## �🚀 Get Started Today
 
-Transform your network security with ZehraSec Advanced Firewall:
+Transform your network security with ZehraShield:
 
 1. **Download** the latest release
 2. **Install** using our automated scripts
@@ -693,8 +693,8 @@ Transform your network security with ZehraSec Advanced Firewall:
 
 **Ready to secure your network?** 
 
-[Download Now](https://github.com/zehrasec/advanced-firewall/releases) | [View Documentation](https://docs.zehrasec.com) | [💰 Support Project](donate.md) | [Contact Sales](mailto:sales@zehrasec.com)
+[Download Now](https://github.com/yashab-cyber/zehrashield/releases) | [View Documentation](https://docs.zehrasec.com) | [💰 Support Project](donate.md) | [Contact Sales](mailto:sales@zehrasec.com)
 
 ---
 
-*ZehraSec Advanced Firewall - The future of network security is here.*
+*ZehraShield - The future of network security is here.*
