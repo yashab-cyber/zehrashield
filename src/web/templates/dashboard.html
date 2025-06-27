@@ -1,0 +1,513 @@
+{% extends "base.html" %}
+
+{% block title %}Dashboard - ZehraShield{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <!-- Page Header -->
+    <div class="row mb-4">
+        <div class="col-12">
+            <h1 class="h3 mb-3">
+                <i class="fas fa-tachometer-alt me-2"></i>
+                Security Dashboard
+            </h1>
+            <p class="text-muted">Real-time monitoring and status of your ZehraShield firewall system</p>
+        </div>
+    </div>
+    
+    <!-- System Status Cards -->
+    <div class="row mb-4">
+        <div class="col-xl-3 col-md-6 mb-3">
+            <div class="stat-card" style="background: linear-gradient(135deg, #059669, #34d399);">
+                <div class="stat-value" id="threats-blocked">0</div>
+                <div class="stat-label">
+                    <i class="fas fa-shield-alt me-1"></i>
+                    Threats Blocked Today
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xl-3 col-md-6 mb-3">
+            <div class="stat-card" style="background: linear-gradient(135deg, #3b82f6, #60a5fa);">
+                <div class="stat-value" id="packets-processed">0</div>
+                <div class="stat-label">
+                    <i class="fas fa-exchange-alt me-1"></i>
+                    Packets Processed
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xl-3 col-md-6 mb-3">
+            <div class="stat-card" style="background: linear-gradient(135deg, #8b5cf6, #a78bfa);">
+                <div class="stat-value" id="active-incidents">0</div>
+                <div class="stat-label">
+                    <i class="fas fa-exclamation-triangle me-1"></i>
+                    Active Incidents
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-xl-3 col-md-6 mb-3">
+            <div class="stat-card" style="background: linear-gradient(135deg, #f59e0b, #fbbf24);">
+                <div class="stat-value" id="connected-devices">0</div>
+                <div class="stat-label">
+                    <i class="fas fa-network-wired me-1"></i>
+                    Connected Devices
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- System Status and Layer Health -->
+    <div class="row mb-4">
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-heartbeat me-2"></i>
+                        System Status
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-6">
+                            <div class="text-center">
+                                <div class="h4 mb-0">
+                                    <span class="status-indicator status-running"></span>
+                                    <span id="system-status">Running</span>
+                                </div>
+                                <small class="text-muted">Firewall Status</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="text-center">
+                                <div class="h4 mb-0" id="uptime">00:00:00</div>
+                                <small class="text-muted">Uptime</small>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <hr>
+                    
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <div class="h5 mb-0" id="cpu-usage">0%</div>
+                            <small class="text-muted">CPU Usage</small>
+                        </div>
+                        <div class="col-4 text-center">
+                            <div class="h5 mb-0" id="memory-usage">0%</div>
+                            <small class="text-muted">Memory Usage</small>
+                        </div>
+                        <div class="col-4 text-center">
+                            <div class="h5 mb-0" id="disk-usage">0%</div>
+                            <small class="text-muted">Disk Usage</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-6">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-layer-group me-2"></i>
+                        Security Layers Status
+                    </h5>
+                </div>
+                <div class="card-body" id="layers-status">
+                    <!-- Layer status will be populated by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Charts Row -->
+    <div class="row mb-4">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-chart-line me-2"></i>
+                        Threat Detection Timeline
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="threatChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-chart-pie me-2"></i>
+                        Threat Categories
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="chart-container">
+                        <canvas id="categoryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Recent Events and Quick Actions -->
+    <div class="row">
+        <div class="col-lg-8">
+            <div class="card">
+                <div class="card-header d-flex justify-content-between align-items-center">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-clock me-2"></i>
+                        Recent Security Events
+                    </h5>
+                    <a href="{{ url_for('events') }}" class="btn btn-sm btn-outline-primary">
+                        View All
+                    </a>
+                </div>
+                <div class="card-body">
+                    <div class="table-responsive">
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th>Time</th>
+                                    <th>Type</th>
+                                    <th>Source</th>
+                                    <th>Severity</th>
+                                    <th>Description</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recent-events">
+                                <tr>
+                                    <td colspan="5" class="text-center">
+                                        <i class="fas fa-spinner fa-spin"></i> Loading...
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="col-lg-4">
+            <div class="card">
+                <div class="card-header">
+                    <h5 class="card-title mb-0">
+                        <i class="fas fa-tools me-2"></i>
+                        Quick Actions
+                    </h5>
+                </div>
+                <div class="card-body">
+                    <div class="d-grid gap-2">
+                        <button class="btn btn-outline-primary" onclick="refreshDashboard()">
+                            <i class="fas fa-sync-alt me-2"></i>
+                            Refresh Dashboard
+                        </button>
+                        
+                        <button class="btn btn-outline-warning" onclick="restartFirewall()">
+                            <i class="fas fa-redo me-2"></i>
+                            Restart Firewall
+                        </button>
+                        
+                        <a href="{{ url_for('config') }}" class="btn btn-outline-info">
+                            <i class="fas fa-cogs me-2"></i>
+                            Configuration
+                        </a>
+                        
+                        <a href="{{ url_for('reports') }}" class="btn btn-outline-success">
+                            <i class="fas fa-download me-2"></i>
+                            Generate Report
+                        </a>
+                    </div>
+                    
+                    <hr>
+                    
+                    <h6>System Information</h6>
+                    <small class="text-muted">
+                        <strong>Version:</strong> ZehraShield v3.0.0<br>
+                        <strong>Build:</strong> Enterprise Edition<br>
+                        <strong>Developer:</strong> Yashab Alam<br>
+                        <strong>Company:</strong> ZehraSec
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    let threatChart, categoryChart;
+    
+    // Initialize charts
+    function initCharts() {
+        // Threat Detection Timeline Chart
+        const threatCtx = document.getElementById('threatChart').getContext('2d');
+        threatChart = new Chart(threatCtx, {
+            type: 'line',
+            data: {
+                labels: [],
+                datasets: [{
+                    label: 'Threats Detected',
+                    data: [],
+                    borderColor: '#dc2626',
+                    backgroundColor: 'rgba(220, 38, 38, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }, {
+                    label: 'Packets Processed',
+                    data: [],
+                    borderColor: '#3b82f6',
+                    backgroundColor: 'rgba(59, 130, 246, 0.1)',
+                    tension: 0.4,
+                    fill: true
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    y: {
+                        beginAtZero: true
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: true
+                    }
+                }
+            }
+        });
+        
+        // Threat Categories Pie Chart
+        const categoryCtx = document.getElementById('categoryChart').getContext('2d');
+        categoryChart = new Chart(categoryCtx, {
+            type: 'doughnut',
+            data: {
+                labels: ['Malware', 'Port Scans', 'DDoS', 'Intrusion', 'Other'],
+                datasets: [{
+                    data: [0, 0, 0, 0, 0],
+                    backgroundColor: [
+                        '#dc2626',
+                        '#f59e0b',
+                        '#8b5cf6',
+                        '#059669',
+                        '#6b7280'
+                    ]
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom'
+                    }
+                }
+            }
+        });
+    }
+    
+    // Load dashboard data
+    function loadDashboardData() {
+        fetch('/api/stats')
+            .then(response => response.json())
+            .then(data => {
+                updateStats(data);
+                updateLayerStatus(data);
+            })
+            .catch(error => {
+                console.error('Error loading dashboard data:', error);
+            });
+        
+        // Load recent events
+        fetch('/api/events?limit=5')
+            .then(response => response.json())
+            .then(data => {
+                updateRecentEvents(data.events);
+            })
+            .catch(error => {
+                console.error('Error loading recent events:', error);
+            });
+        
+        // Load system status
+        fetch('/api/system/status')
+            .then(response => response.json())
+            .then(data => {
+                updateSystemStatus(data);
+            })
+            .catch(error => {
+                console.error('Error loading system status:', error);
+            });
+    }
+    
+    // Update statistics
+    function updateStats(stats) {
+        // Update main stat cards
+        document.getElementById('threats-blocked').textContent = 
+            formatNumber(stats.engine?.threats_detected || 0);
+        
+        document.getElementById('packets-processed').textContent = 
+            formatNumber(stats.engine?.packets_processed || 0);
+        
+        document.getElementById('active-incidents').textContent = 
+            formatNumber(stats.layer6_siem_integration?.active_incidents || 0);
+        
+        document.getElementById('connected-devices').textContent = 
+            formatNumber(stats.layer5_network_access_control?.total_known_devices || 0);
+    }
+    
+    // Update layer status
+    function updateLayerStatus(stats) {
+        const layersContainer = document.getElementById('layers-status');
+        const layers = [
+            { name: 'Layer 1: Packet Filter', key: 'layer1_packet_filter' },
+            { name: 'Layer 2: Application Gateway', key: 'layer2_application_gateway' },
+            { name: 'Layer 3: IDS/IPS', key: 'layer3_ids_ips' },
+            { name: 'Layer 4: Threat Intelligence', key: 'layer4_threat_intelligence' },
+            { name: 'Layer 5: Network Access Control', key: 'layer5_network_access_control' },
+            { name: 'Layer 6: SIEM Integration', key: 'layer6_siem_integration' }
+        ];
+        
+        layersContainer.innerHTML = '';
+        
+        layers.forEach(layer => {
+            const layerData = stats[layer.key];
+            const isHealthy = layerData ? true : false;
+            
+            const layerElement = document.createElement('div');
+            layerElement.className = `layer-status ${isHealthy ? '' : 'error'}`;
+            layerElement.innerHTML = `
+                <div class="d-flex justify-content-between align-items-center">
+                    <span>
+                        <span class="status-indicator ${isHealthy ? 'status-running' : 'status-stopped'}"></span>
+                        ${layer.name}
+                    </span>
+                    <small class="text-muted">${isHealthy ? 'Active' : 'Inactive'}</small>
+                </div>
+            `;
+            
+            layersContainer.appendChild(layerElement);
+        });
+    }
+    
+    // Update system status
+    function updateSystemStatus(status) {
+        // Update system status indicator
+        const systemStatusElement = document.getElementById('system-status');
+        const statusIndicator = systemStatusElement.previousElementSibling;
+        
+        if (status.firewall_running) {
+            systemStatusElement.textContent = 'Running';
+            statusIndicator.className = 'status-indicator status-running';
+        } else {
+            systemStatusElement.textContent = 'Stopped';
+            statusIndicator.className = 'status-indicator status-stopped';
+        }
+        
+        // Update uptime
+        if (status.uptime) {
+            const uptimeElement = document.getElementById('uptime');
+            const hours = Math.floor(status.uptime / 3600);
+            const minutes = Math.floor((status.uptime % 3600) / 60);
+            const seconds = Math.floor(status.uptime % 60);
+            uptimeElement.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+        }
+        
+        // Update system metrics
+        if (status.system) {
+            document.getElementById('cpu-usage').textContent = `${status.system.cpu_percent.toFixed(1)}%`;
+            document.getElementById('memory-usage').textContent = `${status.system.memory_percent.toFixed(1)}%`;
+            document.getElementById('disk-usage').textContent = `${status.system.disk_usage.toFixed(1)}%`;
+        }
+    }
+    
+    // Update recent events table
+    function updateRecentEvents(events) {
+        const tbody = document.getElementById('recent-events');
+        
+        if (!events || events.length === 0) {
+            tbody.innerHTML = '<tr><td colspan="5" class="text-center text-muted">No recent events</td></tr>';
+            return;
+        }
+        
+        tbody.innerHTML = events.map(event => `
+            <tr>
+                <td>${formatTimestamp(event.timestamp)}</td>
+                <td>${event.event_type}</td>
+                <td>${event.source_ip}</td>
+                <td>
+                    <span class="badge bg-${getSeverityColor(event.severity)}">
+                        ${event.severity}
+                    </span>
+                </td>
+                <td>${event.description}</td>
+            </tr>
+        `).join('');
+    }
+    
+    // Get severity color for badges
+    function getSeverityColor(severity) {
+        switch (severity) {
+            case 'CRITICAL': return 'danger';
+            case 'HIGH': return 'warning';
+            case 'MEDIUM': return 'info';
+            case 'LOW': return 'secondary';
+            default: return 'secondary';
+        }
+    }
+    
+    // Refresh dashboard
+    function refreshDashboard() {
+        loadDashboardData();
+    }
+    
+    // Restart firewall
+    function restartFirewall() {
+        if (confirm('Are you sure you want to restart the firewall? This may temporarily interrupt protection.')) {
+            fetch('/api/restart', { method: 'POST' })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert('Firewall restart initiated successfully');
+                    } else {
+                        alert('Error restarting firewall: ' + data.message);
+                    }
+                })
+                .catch(error => {
+                    alert('Error restarting firewall: ' + error.message);
+                });
+        }
+    }
+    
+    // Handle real-time stats updates
+    function handleStatsUpdate(stats) {
+        updateStats(stats);
+        updateLayerStatus(stats);
+    }
+    
+    // Auto-refresh function
+    function refreshData() {
+        loadDashboardData();
+    }
+    
+    // Initialize dashboard
+    document.addEventListener('DOMContentLoaded', function() {
+        initCharts();
+        loadDashboardData();
+        setupAutoRefresh(30000); // Refresh every 30 seconds
+        
+        // Subscribe to real-time updates
+        if (typeof socket !== 'undefined') {
+            socket.emit('subscribe_stats');
+        }
+    });
+</script>
+{% endblock %}

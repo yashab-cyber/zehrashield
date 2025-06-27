@@ -1,0 +1,171 @@
+{
+  "firewall": {
+    "enabled": true,
+    "mode": "production",
+    "log_level": "INFO",
+    "test_mode": false
+  },
+  "web_console": {
+    "enabled": true,
+    "host": "0.0.0.0",
+    "port": 8443,
+    "ssl": true,
+    "username": "admin",
+    "password": "zehrashield123"
+  },
+  "layers": {
+    "layer1_packet_filter": {
+      "enabled": true,
+      "rate_limit_per_ip": 1000,
+      "blocked_ports": [1337, 31337, 6667, 6668, 6669],
+      "allowed_ports": [80, 443, 22, 53, 993, 995],
+      "drop_invalid_packets": true,
+      "enable_ddos_protection": true
+    },
+    "layer2_application_gateway": {
+      "enabled": true,
+      "http_inspection": true,
+      "https_inspection": true,
+      "dns_filtering": true,
+      "ftp_inspection": true,
+      "smtp_inspection": true,
+      "blocked_domains": ["malware.com", "phishing.net"],
+      "content_filtering": true
+    },
+    "layer3_ids_ips": {
+      "enabled": true,
+      "auto_block": true,
+      "threat_threshold": 75,
+      "signature_updates": true,
+      "anomaly_detection": true,
+      "behavioral_analysis": true,
+      "whitelist_ips": ["192.168.1.0/24", "10.0.0.0/8"],
+      "blacklist_ips": []
+    },
+    "layer4_threat_intelligence": {
+      "enabled": true,
+      "ml_detection": true,
+      "threat_feeds": [
+        "misp",
+        "alienvault",
+        "abuse.ch",
+        "emerging_threats"
+      ],
+      "reputation_scoring": true,
+      "geolocation_filtering": true,
+      "blocked_countries": ["CN", "RU", "KP"],
+      "threat_hunting": true
+    },
+    "layer5_network_access_control": {
+      "enabled": true,
+      "device_authentication": true,
+      "network_segmentation": true,
+      "mac_filtering": false,
+      "802_1x_authentication": false,
+      "zero_trust_mode": true,
+      "continuous_validation": true
+    },
+    "layer6_siem_integration": {
+      "enabled": true,
+      "log_aggregation": true,
+      "real_time_alerts": true,
+      "incident_response": true,
+      "compliance_reporting": true,
+      "log_retention_days": 90,
+      "export_formats": ["json", "csv", "syslog"],
+      "integrations": {
+        "splunk": {
+          "enabled": false,
+          "host": "",
+          "port": 8088,
+          "token": ""
+        },
+        "elastic": {
+          "enabled": false,
+          "host": "localhost",
+          "port": 9200,
+          "index": "zehrashield-logs"
+        }
+      }
+    }
+  },
+  "machine_learning": {
+    "enabled": true,
+    "models": {
+      "anomaly_detection": {
+        "algorithm": "isolation_forest",
+        "sensitivity": 0.1,
+        "training_data_days": 7
+      },
+      "threat_classification": {
+        "algorithm": "random_forest",
+        "confidence_threshold": 0.8,
+        "feature_extraction": true
+      },
+      "behavioral_analysis": {
+        "algorithm": "lstm",
+        "time_window": 300,
+        "update_frequency": 3600
+      }
+    },
+    "training": {
+      "auto_retrain": true,
+      "retrain_interval_hours": 24,
+      "min_samples": 1000
+    }
+  },
+  "performance": {
+    "max_memory_usage_mb": 1024,
+    "max_cpu_usage_percent": 80,
+    "packet_buffer_size": 65536,
+    "worker_threads": 4,
+    "queue_size": 10000
+  },
+  "monitoring": {
+    "metrics_enabled": true,
+    "health_check_interval": 30,
+    "prometheus_enabled": false,
+    "grafana_integration": false,
+    "alert_thresholds": {
+      "high_cpu": 85,
+      "high_memory": 90,
+      "high_threat_rate": 100,
+      "low_disk_space": 10
+    }
+  },
+  "notifications": {
+    "email": {
+      "enabled": false,
+      "smtp_server": "",
+      "smtp_port": 587,
+      "username": "",
+      "password": "",
+      "from_address": "alerts@zehrashield.local",
+      "to_addresses": []
+    },
+    "slack": {
+      "enabled": false,
+      "webhook_url": "",
+      "channel": "#security-alerts"
+    },
+    "webhook": {
+      "enabled": false,
+      "url": "",
+      "secret": ""
+    }
+  },
+  "database": {
+    "type": "sqlite",
+    "path": "data/zehrashield.db",
+    "backup_enabled": true,
+    "backup_interval_hours": 6
+  },
+  "api": {
+    "enabled": true,
+    "port": 5000,
+    "host": "127.0.0.1",
+    "authentication": true,
+    "rate_limiting": true,
+    "cors_enabled": true
+  }
+}

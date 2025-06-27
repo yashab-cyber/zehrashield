@@ -1,0 +1,938 @@
+{% extends "base.html" %}
+
+{% block title %}Configuration - ZehraShield{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-12">
+            <div class="d-flex justify-content-between align-items-center mb-4">
+                <h2><i class="fas fa-cogs"></i> System Configuration</h2>
+                <div class="btn-group">
+                    <button class="btn btn-success" onclick="saveAllConfigs()">
+                        <i class="fas fa-save"></i> Save All
+                    </button>
+                    <button class="btn btn-outline-warning" onclick="resetToDefaults()">
+                        <i class="fas fa-undo"></i> Reset to Defaults
+                    </button>
+                    <button class="btn btn-outline-info" onclick="exportConfig()">
+                        <i class="fas fa-download"></i> Export
+                    </button>
+                    <button class="btn btn-outline-secondary" onclick="importConfig()">
+                        <i class="fas fa-upload"></i> Import
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Configuration Tabs -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card">
+                <div class="card-header">
+                    <ul class="nav nav-tabs card-header-tabs" id="configTabs" role="tablist">
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link active" id="general-tab" data-bs-toggle="tab" data-bs-target="#general" type="button" role="tab">
+                                <i class="fas fa-sliders-h"></i> General
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="layers-tab" data-bs-toggle="tab" data-bs-target="#layers" type="button" role="tab">
+                                <i class="fas fa-layer-group"></i> Security Layers
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="ml-tab" data-bs-toggle="tab" data-bs-target="#ml" type="button" role="tab">
+                                <i class="fas fa-brain"></i> Machine Learning
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="alerts-tab" data-bs-toggle="tab" data-bs-target="#alerts" type="button" role="tab">
+                                <i class="fas fa-bell"></i> Alerts & Notifications
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="logging-tab" data-bs-toggle="tab" data-bs-target="#logging" type="button" role="tab">
+                                <i class="fas fa-file-alt"></i> Logging
+                            </button>
+                        </li>
+                        <li class="nav-item" role="presentation">
+                            <button class="nav-link" id="performance-tab" data-bs-toggle="tab" data-bs-target="#performance" type="button" role="tab">
+                                <i class="fas fa-tachometer-alt"></i> Performance
+                            </button>
+                        </li>
+                    </ul>
+                </div>
+                <div class="card-body">
+                    <div class="tab-content" id="configTabsContent">
+                        <!-- General Configuration -->
+                        <div class="tab-pane fade show active" id="general" role="tabpanel">
+                            <h5>General Settings</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="systemName" class="form-label">System Name</label>
+                                        <input type="text" class="form-control" id="systemName" value="ZehraShield">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="adminEmail" class="form-label">Administrator Email</label>
+                                        <input type="email" class="form-control" id="adminEmail" placeholder="admin@example.com">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="timezone" class="form-label">Timezone</label>
+                                        <select class="form-select" id="timezone">
+                                            <option value="UTC" selected>UTC</option>
+                                            <option value="US/Eastern">US/Eastern</option>
+                                            <option value="US/Central">US/Central</option>
+                                            <option value="US/Pacific">US/Pacific</option>
+                                            <option value="Europe/London">Europe/London</option>
+                                            <option value="Europe/Paris">Europe/Paris</option>
+                                            <option value="Asia/Tokyo">Asia/Tokyo</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="sessionTimeout" class="form-label">Session Timeout (minutes)</label>
+                                        <input type="number" class="form-control" id="sessionTimeout" value="30" min="5" max="480">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="enableSSL" checked>
+                                        <label class="form-check-label" for="enableSSL">
+                                            Enable SSL/TLS
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="enableMFA" checked>
+                                        <label class="form-check-label" for="enableMFA">
+                                            Enable Multi-Factor Authentication
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Security Layers Configuration -->
+                        <div class="tab-pane fade" id="layers" role="tabpanel">
+                            <h5>Security Layers Configuration</h5>
+                            
+                            <!-- Layer 1: Packet Filtering -->
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h6><i class="fas fa-filter"></i> Layer 1: Packet Filtering</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="layer1Enabled" checked>
+                                                <label class="form-check-label" for="layer1Enabled">
+                                                    Enable Layer 1
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="layer1Mode" class="form-label">Filtering Mode</label>
+                                                <select class="form-select" id="layer1Mode">
+                                                    <option value="monitor">Monitor Only</option>
+                                                    <option value="block" selected>Block Threats</option>
+                                                    <option value="strict">Strict Mode</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Layer 2: Application Gateway -->
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h6><i class="fas fa-shield-alt"></i> Layer 2: Application Gateway</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="layer2Enabled" checked>
+                                                <label class="form-check-label" for="layer2Enabled">
+                                                    Enable Layer 2
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="layer2Sensitivity" class="form-label">Detection Sensitivity</label>
+                                                <select class="form-select" id="layer2Sensitivity">
+                                                    <option value="low">Low</option>
+                                                    <option value="medium" selected>Medium</option>
+                                                    <option value="high">High</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Layer 3: IDS/IPS -->
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h6><i class="fas fa-search"></i> Layer 3: Intrusion Detection/Prevention</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="layer3Enabled" checked>
+                                                <label class="form-check-label" for="layer3Enabled">
+                                                    Enable Layer 3
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="layer3IPS" checked>
+                                                <label class="form-check-label" for="layer3IPS">
+                                                    Enable IPS (Auto-block)
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="layer3UpdateFreq" class="form-label">Rule Update Frequency</label>
+                                                <select class="form-select" id="layer3UpdateFreq">
+                                                    <option value="hourly">Hourly</option>
+                                                    <option value="daily" selected>Daily</option>
+                                                    <option value="weekly">Weekly</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Layer 4: Threat Intelligence -->
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h6><i class="fas fa-globe"></i> Layer 4: Threat Intelligence</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="layer4Enabled" checked>
+                                                <label class="form-check-label" for="layer4Enabled">
+                                                    Enable Layer 4
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="layer4FeedUpdate" class="form-label">Feed Update Interval</label>
+                                                <select class="form-select" id="layer4FeedUpdate">
+                                                    <option value="15min">15 Minutes</option>
+                                                    <option value="1hour" selected>1 Hour</option>
+                                                    <option value="4hour">4 Hours</option>
+                                                    <option value="daily">Daily</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Layer 5: Network Access Control -->
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h6><i class="fas fa-network-wired"></i> Layer 5: Network Access Control</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="layer5Enabled" checked>
+                                                <label class="form-check-label" for="layer5Enabled">
+                                                    Enable Layer 5
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="layer5AutoQuarantine">
+                                                <label class="form-check-label" for="layer5AutoQuarantine">
+                                                    Auto-quarantine unknown devices
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Layer 6: SIEM Integration -->
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h6><i class="fas fa-chart-line"></i> Layer 6: SIEM Integration</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="layer6Enabled" checked>
+                                                <label class="form-check-label" for="layer6Enabled">
+                                                    Enable Layer 6
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="layer6ExportFormat" class="form-label">Export Format</label>
+                                                <select class="form-select" id="layer6ExportFormat">
+                                                    <option value="syslog" selected>Syslog</option>
+                                                    <option value="cef">CEF</option>
+                                                    <option value="json">JSON</option>
+                                                    <option value="xml">XML</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Machine Learning Configuration -->
+                        <div class="tab-pane fade" id="ml" role="tabpanel">
+                            <h5>Machine Learning Configuration</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="mlEnabled" checked>
+                                        <label class="form-check-label" for="mlEnabled">
+                                            Enable Machine Learning
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="mlModelUpdate" class="form-label">Model Update Frequency</label>
+                                        <select class="form-select" id="mlModelUpdate">
+                                            <option value="realtime">Real-time</option>
+                                            <option value="hourly">Hourly</option>
+                                            <option value="daily" selected>Daily</option>
+                                            <option value="weekly">Weekly</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="mlAnomalyThreshold" class="form-label">Anomaly Detection Threshold</label>
+                                        <input type="range" class="form-range" id="mlAnomalyThreshold" min="0.1" max="1.0" step="0.1" value="0.7">
+                                        <div class="form-text">Current: <span id="anomalyThresholdValue">0.7</span></div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="mlTrainingDataRetention" class="form-label">Training Data Retention (days)</label>
+                                        <input type="number" class="form-control" id="mlTrainingDataRetention" value="30" min="1" max="365">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="mlBehavioralAnalysis" checked>
+                                        <label class="form-check-label" for="mlBehavioralAnalysis">
+                                            Enable Behavioral Analysis
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="mlThreatPrediction">
+                                        <label class="form-check-label" for="mlThreatPrediction">
+                                            Enable Predictive Threat Analysis
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Alerts & Notifications Configuration -->
+                        <div class="tab-pane fade" id="alerts" role="tabpanel">
+                            <h5>Alerts & Notifications</h5>
+                            
+                            <!-- Email Configuration -->
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h6><i class="fas fa-envelope"></i> Email Notifications</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="emailEnabled">
+                                                <label class="form-check-label" for="emailEnabled">
+                                                    Enable Email Notifications
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="mb-3">
+                                                <label for="smtpServer" class="form-label">SMTP Server</label>
+                                                <input type="text" class="form-control" id="smtpServer" placeholder="smtp.example.com">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="smtpPort" class="form-label">SMTP Port</label>
+                                                <input type="number" class="form-control" id="smtpPort" value="587">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="smtpUsername" class="form-label">Username</label>
+                                                <input type="text" class="form-control" id="smtpUsername">
+                                            </div>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <div class="mb-3">
+                                                <label for="smtpPassword" class="form-label">Password</label>
+                                                <input type="password" class="form-control" id="smtpPassword">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Alert Severity Levels -->
+                            <div class="card mb-3">
+                                <div class="card-header">
+                                    <h6><i class="fas fa-exclamation-triangle"></i> Alert Severity Levels</h6>
+                                </div>
+                                <div class="card-body">
+                                    <div class="row">
+                                        <div class="col-md-3">
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="alertCritical" checked>
+                                                <label class="form-check-label text-danger" for="alertCritical">
+                                                    Critical Alerts
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="alertHigh" checked>
+                                                <label class="form-check-label text-warning" for="alertHigh">
+                                                    High Alerts
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="alertMedium">
+                                                <label class="form-check-label text-info" for="alertMedium">
+                                                    Medium Alerts
+                                                </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-3">
+                                            <div class="form-check mb-3">
+                                                <input class="form-check-input" type="checkbox" id="alertLow">
+                                                <label class="form-check-label text-secondary" for="alertLow">
+                                                    Low Alerts
+                                                </label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Logging Configuration -->
+                        <div class="tab-pane fade" id="logging" role="tabpanel">
+                            <h5>Logging Configuration</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="logLevel" class="form-label">Log Level</label>
+                                        <select class="form-select" id="logLevel">
+                                            <option value="DEBUG">Debug</option>
+                                            <option value="INFO" selected>Info</option>
+                                            <option value="WARNING">Warning</option>
+                                            <option value="ERROR">Error</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="logRetention" class="form-label">Log Retention (days)</label>
+                                        <input type="number" class="form-control" id="logRetention" value="90" min="1" max="3650">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="logMaxSize" class="form-label">Max Log File Size (MB)</label>
+                                        <input type="number" class="form-control" id="logMaxSize" value="100" min="1" max="1000">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="logBackupCount" class="form-label">Log Backup Count</label>
+                                        <input type="number" class="form-control" id="logBackupCount" value="10" min="1" max="50">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="logCompression" checked>
+                                        <label class="form-check-label" for="logCompression">
+                                            Enable Log Compression
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="logEncryption">
+                                        <label class="form-check-label" for="logEncryption">
+                                            Enable Log Encryption
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Performance Configuration -->
+                        <div class="tab-pane fade" id="performance" role="tabpanel">
+                            <h5>Performance Configuration</h5>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="maxThreads" class="form-label">Maximum Threads</label>
+                                        <input type="number" class="form-control" id="maxThreads" value="10" min="1" max="100">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="memoryLimit" class="form-label">Memory Limit (MB)</label>
+                                        <input type="number" class="form-control" id="memoryLimit" value="1024" min="256" max="8192">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="cacheSize" class="form-label">Cache Size (MB)</label>
+                                        <input type="number" class="form-control" id="cacheSize" value="256" min="64" max="2048">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="mb-3">
+                                        <label for="processingTimeout" class="form-label">Processing Timeout (seconds)</label>
+                                        <input type="number" class="form-control" id="processingTimeout" value="30" min="5" max="300">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="enableCaching" checked>
+                                        <label class="form-check-label" for="enableCaching">
+                                            Enable Result Caching
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-check mb-3">
+                                        <input class="form-check-input" type="checkbox" id="enableOptimization" checked>
+                                        <label class="form-check-label" for="enableOptimization">
+                                            Enable Performance Optimization
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Import Configuration Modal -->
+<div class="modal fade" id="importConfigModal" tabindex="-1">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Import Configuration</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+                <div class="mb-3">
+                    <label for="configFile" class="form-label">Select Configuration File</label>
+                    <input type="file" class="form-control" id="configFile" accept=".json,.yml,.yaml">
+                </div>
+                <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="overwriteExisting">
+                    <label class="form-check-label" for="overwriteExisting">
+                        Overwrite existing configuration
+                    </label>
+                </div>
+                <div class="alert alert-warning mt-3">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <strong>Warning:</strong> Importing a configuration will restart the firewall service.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="submitImport()">Import</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Hidden file input for export -->
+<input type="file" id="hiddenFileInput" style="display: none;">
+
+<script>
+let configData = {};
+let hasUnsavedChanges = false;
+
+// Load configuration on page load
+document.addEventListener('DOMContentLoaded', function() {
+    loadConfiguration();
+    
+    // Set up change detection
+    setupChangeDetection();
+    
+    // Update anomaly threshold display
+    document.getElementById('mlAnomalyThreshold').addEventListener('input', function() {
+        document.getElementById('anomalyThresholdValue').textContent = this.value;
+    });
+    
+    // Warn about unsaved changes
+    window.addEventListener('beforeunload', function(e) {
+        if (hasUnsavedChanges) {
+            e.preventDefault();
+            e.returnValue = '';
+        }
+    });
+});
+
+function loadConfiguration() {
+    fetch('/api/config')
+        .then(response => response.json())
+        .then(data => {
+            configData = data;
+            populateConfigurationForm(data);
+            hasUnsavedChanges = false;
+            updateSaveButtonState();
+        })
+        .catch(error => {
+            console.error('Error loading configuration:', error);
+            showAlert('Error loading configuration', 'danger');
+        });
+}
+
+function populateConfigurationForm(config) {
+    // General settings
+    document.getElementById('systemName').value = config.general?.system_name || 'ZehraShield';
+    document.getElementById('adminEmail').value = config.general?.admin_email || '';
+    document.getElementById('timezone').value = config.general?.timezone || 'UTC';
+    document.getElementById('sessionTimeout').value = config.general?.session_timeout || 30;
+    document.getElementById('enableSSL').checked = config.general?.enable_ssl !== false;
+    document.getElementById('enableMFA').checked = config.general?.enable_mfa !== false;
+    
+    // Security layers
+    const layers = config.layers || {};
+    document.getElementById('layer1Enabled').checked = layers.layer1?.enabled !== false;
+    document.getElementById('layer1Mode').value = layers.layer1?.mode || 'block';
+    document.getElementById('layer2Enabled').checked = layers.layer2?.enabled !== false;
+    document.getElementById('layer2Sensitivity').value = layers.layer2?.sensitivity || 'medium';
+    document.getElementById('layer3Enabled').checked = layers.layer3?.enabled !== false;
+    document.getElementById('layer3IPS').checked = layers.layer3?.enable_ips !== false;
+    document.getElementById('layer3UpdateFreq').value = layers.layer3?.update_frequency || 'daily';
+    document.getElementById('layer4Enabled').checked = layers.layer4?.enabled !== false;
+    document.getElementById('layer4FeedUpdate').value = layers.layer4?.feed_update_interval || '1hour';
+    document.getElementById('layer5Enabled').checked = layers.layer5?.enabled !== false;
+    document.getElementById('layer5AutoQuarantine').checked = layers.layer5?.auto_quarantine || false;
+    document.getElementById('layer6Enabled').checked = layers.layer6?.enabled !== false;
+    document.getElementById('layer6ExportFormat').value = layers.layer6?.export_format || 'syslog';
+    
+    // Machine learning
+    const ml = config.ml || {};
+    document.getElementById('mlEnabled').checked = ml.enabled !== false;
+    document.getElementById('mlModelUpdate').value = ml.model_update_frequency || 'daily';
+    document.getElementById('mlAnomalyThreshold').value = ml.anomaly_threshold || 0.7;
+    document.getElementById('anomalyThresholdValue').textContent = ml.anomaly_threshold || 0.7;
+    document.getElementById('mlTrainingDataRetention').value = ml.training_data_retention || 30;
+    document.getElementById('mlBehavioralAnalysis').checked = ml.behavioral_analysis !== false;
+    document.getElementById('mlThreatPrediction').checked = ml.threat_prediction || false;
+    
+    // Alerts
+    const alerts = config.alerts || {};
+    document.getElementById('emailEnabled').checked = alerts.email?.enabled || false;
+    document.getElementById('smtpServer').value = alerts.email?.smtp_server || '';
+    document.getElementById('smtpPort').value = alerts.email?.smtp_port || 587;
+    document.getElementById('smtpUsername').value = alerts.email?.username || '';
+    document.getElementById('smtpPassword').value = alerts.email?.password || '';
+    document.getElementById('alertCritical').checked = alerts.severities?.critical !== false;
+    document.getElementById('alertHigh').checked = alerts.severities?.high !== false;
+    document.getElementById('alertMedium').checked = alerts.severities?.medium || false;
+    document.getElementById('alertLow').checked = alerts.severities?.low || false;
+    
+    // Logging
+    const logging = config.logging || {};
+    document.getElementById('logLevel').value = logging.level || 'INFO';
+    document.getElementById('logRetention').value = logging.retention_days || 90;
+    document.getElementById('logMaxSize').value = logging.max_size_mb || 100;
+    document.getElementById('logBackupCount').value = logging.backup_count || 10;
+    document.getElementById('logCompression').checked = logging.compression !== false;
+    document.getElementById('logEncryption').checked = logging.encryption || false;
+    
+    // Performance
+    const performance = config.performance || {};
+    document.getElementById('maxThreads').value = performance.max_threads || 10;
+    document.getElementById('memoryLimit').value = performance.memory_limit_mb || 1024;
+    document.getElementById('cacheSize').value = performance.cache_size_mb || 256;
+    document.getElementById('processingTimeout').value = performance.processing_timeout || 30;
+    document.getElementById('enableCaching').checked = performance.enable_caching !== false;
+    document.getElementById('enableOptimization').checked = performance.enable_optimization !== false;
+}
+
+function setupChangeDetection() {
+    const inputs = document.querySelectorAll('input, select, textarea');
+    inputs.forEach(input => {
+        input.addEventListener('change', function() {
+            hasUnsavedChanges = true;
+            updateSaveButtonState();
+        });
+    });
+}
+
+function updateSaveButtonState() {
+    const saveButton = document.querySelector('[onclick="saveAllConfigs()"]');
+    if (hasUnsavedChanges) {
+        saveButton.classList.remove('btn-success');
+        saveButton.classList.add('btn-warning');
+        saveButton.innerHTML = '<i class="fas fa-save"></i> Save Changes';
+    } else {
+        saveButton.classList.remove('btn-warning');
+        saveButton.classList.add('btn-success');
+        saveButton.innerHTML = '<i class="fas fa-save"></i> Save All';
+    }
+}
+
+function collectConfigurationData() {
+    return {
+        general: {
+            system_name: document.getElementById('systemName').value,
+            admin_email: document.getElementById('adminEmail').value,
+            timezone: document.getElementById('timezone').value,
+            session_timeout: parseInt(document.getElementById('sessionTimeout').value),
+            enable_ssl: document.getElementById('enableSSL').checked,
+            enable_mfa: document.getElementById('enableMFA').checked
+        },
+        layers: {
+            layer1: {
+                enabled: document.getElementById('layer1Enabled').checked,
+                mode: document.getElementById('layer1Mode').value
+            },
+            layer2: {
+                enabled: document.getElementById('layer2Enabled').checked,
+                sensitivity: document.getElementById('layer2Sensitivity').value
+            },
+            layer3: {
+                enabled: document.getElementById('layer3Enabled').checked,
+                enable_ips: document.getElementById('layer3IPS').checked,
+                update_frequency: document.getElementById('layer3UpdateFreq').value
+            },
+            layer4: {
+                enabled: document.getElementById('layer4Enabled').checked,
+                feed_update_interval: document.getElementById('layer4FeedUpdate').value
+            },
+            layer5: {
+                enabled: document.getElementById('layer5Enabled').checked,
+                auto_quarantine: document.getElementById('layer5AutoQuarantine').checked
+            },
+            layer6: {
+                enabled: document.getElementById('layer6Enabled').checked,
+                export_format: document.getElementById('layer6ExportFormat').value
+            }
+        },
+        ml: {
+            enabled: document.getElementById('mlEnabled').checked,
+            model_update_frequency: document.getElementById('mlModelUpdate').value,
+            anomaly_threshold: parseFloat(document.getElementById('mlAnomalyThreshold').value),
+            training_data_retention: parseInt(document.getElementById('mlTrainingDataRetention').value),
+            behavioral_analysis: document.getElementById('mlBehavioralAnalysis').checked,
+            threat_prediction: document.getElementById('mlThreatPrediction').checked
+        },
+        alerts: {
+            email: {
+                enabled: document.getElementById('emailEnabled').checked,
+                smtp_server: document.getElementById('smtpServer').value,
+                smtp_port: parseInt(document.getElementById('smtpPort').value),
+                username: document.getElementById('smtpUsername').value,
+                password: document.getElementById('smtpPassword').value
+            },
+            severities: {
+                critical: document.getElementById('alertCritical').checked,
+                high: document.getElementById('alertHigh').checked,
+                medium: document.getElementById('alertMedium').checked,
+                low: document.getElementById('alertLow').checked
+            }
+        },
+        logging: {
+            level: document.getElementById('logLevel').value,
+            retention_days: parseInt(document.getElementById('logRetention').value),
+            max_size_mb: parseInt(document.getElementById('logMaxSize').value),
+            backup_count: parseInt(document.getElementById('logBackupCount').value),
+            compression: document.getElementById('logCompression').checked,
+            encryption: document.getElementById('logEncryption').checked
+        },
+        performance: {
+            max_threads: parseInt(document.getElementById('maxThreads').value),
+            memory_limit_mb: parseInt(document.getElementById('memoryLimit').value),
+            cache_size_mb: parseInt(document.getElementById('cacheSize').value),
+            processing_timeout: parseInt(document.getElementById('processingTimeout').value),
+            enable_caching: document.getElementById('enableCaching').checked,
+            enable_optimization: document.getElementById('enableOptimization').checked
+        }
+    };
+}
+
+function saveAllConfigs() {
+    const configData = collectConfigurationData();
+    
+    fetch('/api/config', {
+        method: 'PUT',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(configData)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showAlert('Configuration saved successfully', 'success');
+            hasUnsavedChanges = false;
+            updateSaveButtonState();
+        } else {
+            showAlert('Error saving configuration', 'danger');
+        }
+    })
+    .catch(error => {
+        console.error('Error saving configuration:', error);
+        showAlert('Error saving configuration', 'danger');
+    });
+}
+
+function resetToDefaults() {
+    if (confirm('Are you sure you want to reset all settings to defaults? This will overwrite your current configuration.')) {
+        fetch('/api/config/defaults', {
+            method: 'POST'
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                showAlert('Configuration reset to defaults', 'success');
+                loadConfiguration();
+            } else {
+                showAlert('Error resetting configuration', 'danger');
+            }
+        })
+        .catch(error => {
+            console.error('Error resetting configuration:', error);
+            showAlert('Error resetting configuration', 'danger');
+        });
+    }
+}
+
+function exportConfig() {
+    const configData = collectConfigurationData();
+    const dataStr = JSON.stringify(configData, null, 2);
+    const dataBlob = new Blob([dataStr], {type: 'application/json'});
+    
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(dataBlob);
+    link.download = `zehrashield-config-${new Date().toISOString().split('T')[0]}.json`;
+    link.click();
+}
+
+function importConfig() {
+    new bootstrap.Modal(document.getElementById('importConfigModal')).show();
+}
+
+function submitImport() {
+    const fileInput = document.getElementById('configFile');
+    const file = fileInput.files[0];
+    
+    if (!file) {
+        showAlert('Please select a configuration file', 'warning');
+        return;
+    }
+    
+    const formData = new FormData();
+    formData.append('config_file', file);
+    formData.append('overwrite', document.getElementById('overwriteExisting').checked);
+    
+    fetch('/api/config/import', {
+        method: 'POST',
+        body: formData
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            showAlert('Configuration imported successfully', 'success');
+            bootstrap.Modal.getInstance(document.getElementById('importConfigModal')).hide();
+            loadConfiguration();
+        } else {
+            showAlert('Error importing configuration: ' + (data.message || 'Unknown error'), 'danger');
+        }
+    })
+    .catch(error => {
+        console.error('Error importing configuration:', error);
+        showAlert('Error importing configuration', 'danger');
+    });
+}
+
+function showAlert(message, type) {
+    // Create alert element
+    const alertDiv = document.createElement('div');
+    alertDiv.className = `alert alert-${type} alert-dismissible fade show position-fixed`;
+    alertDiv.style.cssText = 'top: 20px; right: 20px; z-index: 9999; min-width: 300px;';
+    alertDiv.innerHTML = `
+        ${message}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    `;
+    
+    document.body.appendChild(alertDiv);
+    
+    // Auto-remove after 5 seconds
+    setTimeout(() => {
+        if (alertDiv.parentNode) {
+            alertDiv.remove();
+        }
+    }, 5000);
+}
+</script>
+{% endblock %}
