@@ -1,0 +1,627 @@
+# ZehraSec Advanced Firewall - Enterprise License Agreement
+
+**Copyright © 2025 ZehraSec - Yashab Alam**  
+**ALL RIGHTS RESERVED**
+
+## ⚖️ **ENTERPRISE SOFTWARE LICENSE AGREEMENT**
+
+This Enterprise License Agreement ("Agreement") is a legally binding contract between ZehraSec ("Licensor", "ZehraSec", "Company") and the entity or individual using the software ("Licensee", "You", "User").
+
+**⚠️ IMPORTANT**: This software is NOT free for commercial use. Read carefully before installing or using.
+
+---
+
+## 🔐 **1. GRANT OF LICENSE**
+
+Subject to strict compliance with all terms and conditions of this Agreement, Licensor hereby grants Licensee a **limited, non-exclusive, non-transferable, revocable** license to use ZehraSec Advanced Firewall ("Software") **solely** for the purposes outlined in Section 2.
+
+**This license may be terminated immediately** for any violation of terms.
+
+---
+
+## ✅ **2. PERMITTED USES**
+
+### 🆓 **2.1 Free Use (Non-Commercial Only)**
+
+#### Personal Use
+- **Individual use** for personal, non-commercial purposes only
+- **Home network protection** for private residences
+- **Security research** for educational and academic purposes
+- **Learning and experimentation** by individual developers
+
+#### Educational Use
+- **Accredited educational institutions** for classroom instruction
+- **Academic research** and non-commercial studies
+- **Student projects** and assignments
+- **University security labs** and training environments
+
+#### Open Source Projects
+- **Non-commercial open source projects** with proper attribution
+- **Community-driven security tools** (non-profit only)
+- **GitHub public repositories** for educational purposes
+- **MANDATORY**: Proper attribution as specified in Section 12
+
+### 💼 **2.2 Commercial Use (License Required)**
+
+**ALL COMMERCIAL USE REQUIRES PAID LICENSE**
+
+#### Business Operations
+- **Corporate network protection** and enterprise security
+- **Commercial security services** and managed security providers
+- **Revenue-generating applications** or services
+- **Small business use** (Professional Edition required)
+
+#### Enterprise Deployment
+- **Large-scale organizational** implementations
+- **Multi-site corporate** deployments
+- **Cloud infrastructure** protection (AWS, Azure, GCP)
+- **Critical infrastructure** security (Enterprise Edition required)
+
+#### Professional Services
+- **Security consulting** using the software
+- **Managed security services** (MSS/MSSP)
+- **Security system integration** services
+- **Training and certification** programs (with authorization)
+
+---
+
+## 🚫 **3. STRICT RESTRICTIONS**
+
+### ❌ **3.1 Absolutely Prohibited Activities**
+
+Licensee shall **NEVER**:
+
+#### Technical Restrictions
+- **Reverse engineer**, decompile, disassemble, or attempt to derive source code
+- **Modify, alter, or create derivative works** without explicit written permission
+- **Remove, modify, or obscure** copyright notices, license terms, or attribution
+- **Distribute, sublicense, sell, or transfer** the software or any components
+- **Use for benchmarking** against competing products without permission
+
+#### Commercial Restrictions
+- **Use in commercial environments** without appropriate paid licensing
+- **Provide commercial services** using the software without authorization
+- **Integrate into commercial products** without proper licensing agreements
+- **Use for competitive intelligence** or market research against ZehraSec
+
+#### Security and Legal Restrictions
+- **Use for illegal, malicious, or harmful purposes** including but not limited to:
+  - Unauthorized network intrusion or attacks
+  - Malware creation or distribution
+  - Privacy violations or surveillance without consent
+  - Circumventing security measures or access controls
+- **Violate any applicable laws** or regulations in your jurisdiction
+- **Infringe on third-party rights** or intellectual property
+
+### ⚠️ **3.2 Zero Tolerance Policy**
+
+**Any violation** of these restrictions will result in:
+- **Immediate license termination** without notice
+- **Legal action** for copyright infringement
+- **Damages and injunctive relief** as permitted by law
+- **Reporting to appropriate authorities** for illegal activities
+
+---
+
+## 🛡️ **4. INTELLECTUAL PROPERTY RIGHTS**
+
+### 🏢 **4.1 Ownership**
+**ALL RIGHTS, TITLE, AND INTEREST** in and to the Software remain exclusively with ZehraSec, including:
+
+- **Source code and algorithms** (proprietary and trade secret)
+- **Documentation and user guides** (copyrighted material)
+- **Trademarks and service marks** ("ZehraSec", logos, branding)
+- **Patents and patent applications** (current and future)
+- **Trade secrets and know-how** (confidential information)
+- **Database rights** (threat intelligence, signatures)
+
+### 🔒 **4.2 Protected Technology**
+The following are considered **proprietary trade secrets**:
+- Advanced ML threat detection algorithms
+- Zero-day exploit identification mechanisms
+- Behavioral analysis patterns and signatures
+- SOAR automation workflows and playbooks
+- Performance optimization techniques
+- Enterprise integration methodologies
+
+### ⚖️ **4.3 No Rights Granted**
+This license does **NOT** grant any rights to:
+- Use ZehraSec trademarks, service marks, or trade names
+- Access proprietary source code or trade secrets
+- Create competing products or services
+- Sublicense or redistribute any components
+- Claim ownership or authorship
+
+---
+
+## 🔧 **5. SUPPORT AND MAINTENANCE**
+
+### 🆓 **5.1 Community Support (Free Users)**
+- **GitHub Issues** - Best-effort community support only
+- **Public Documentation** - Available online at docs.zehrasec.com
+- **Community Forums** - Peer-to-peer assistance
+- **No SLA or guaranteed response times**
+
+### 💼 **5.2 Professional Support (Paid Licenses)**
+
+#### Professional Edition ($99/year)
+- **Email support** with 48-hour response time
+- **Priority bug fixes** and security updates
+- **Advanced configuration assistance**
+- **Access to professional documentation**
+
+#### Enterprise Edition (Custom Pricing)
+- **24/7 premium support** with guaranteed SLA
+- **Dedicated technical account manager**
+- **Custom development and integration services**
+- **On-site training and implementation support**
+- **Security consulting and compliance assistance**
+
+---
+
+## ⚠️ **6. WARRANTY DISCLAIMER**
+
+**THE SOFTWARE IS PROVIDED "AS IS" WITHOUT WARRANTY OF ANY KIND.**
+
+ZehraSec **EXPRESSLY DISCLAIMS ALL WARRANTIES**, whether express, implied, or statutory, including but not limited to:
+
+- **Merchantability** and fitness for a particular purpose
+- **Non-infringement** of third-party rights
+- **Accuracy, reliability, or completeness** of threat detection
+- **Uninterrupted or error-free operation**
+- **Security against all threats or vulnerabilities**
+- **Compliance with specific regulatory requirements**
+
+**You use this software entirely at your own risk.**
+
+---
+
+## 💥 **7. LIMITATION OF LIABILITY**
+
+### 🛡️ **7.1 Maximum Liability**
+**IN NO EVENT SHALL ZEHRASEC BE LIABLE FOR:**
+
+- **Consequential, incidental, special, or punitive damages**
+- **Lost profits, data loss, or business interruption**
+- **Security breaches or cyber attacks**
+- **Regulatory fines or compliance violations**
+- **Third-party claims or legal actions**
+
+### 💰 **7.2 Liability Cap**
+The **total aggregate liability** of ZehraSec shall not exceed:
+- **Free Users**: $0 (zero dollars)
+- **Paid Users**: The amount paid for the license in the 12 months preceding the claim
+
+### ⚖️ **7.3 Essential Terms**
+These limitations are **fundamental elements** of this Agreement and apply regardless of the legal theory of recovery.
+
+---
+
+## 🔐 **8. DATA PROTECTION AND PRIVACY**
+
+### 📊 **8.1 Data Collection and Usage**
+The Software may collect:
+- **Anonymized usage statistics** for product improvement
+- **Security event data** for threat intelligence (anonymized)
+- **Performance metrics** for optimization purposes
+- **Error reports and crash data** for debugging
+
+**No personal or sensitive data** is collected without explicit consent.
+
+### 🛡️ **8.2 Privacy Compliance**
+ZehraSec is committed to:
+- **GDPR compliance** for European users
+- **CCPA compliance** for California residents  
+- **HIPAA compliance** for healthcare deployments
+- **SOC 2 Type II** certification for enterprise customers
+
+### 🔧 **8.3 Data Control**
+Users can:
+- **Disable telemetry** through configuration settings
+- **Request data deletion** under applicable privacy laws
+- **Access collected data** through privacy portals
+- **Opt-out of analytics** at any time
+
+---
+
+## 🌍 **9. EXPORT CONTROL AND COMPLIANCE**
+
+### 🚨 **9.1 Export Restrictions**
+This software may be subject to:
+- **U.S. Export Administration Regulations (EAR)**
+- **International Traffic in Arms Regulations (ITAR)**
+- **Local export control laws** in your jurisdiction
+
+### 🌐 **9.2 Prohibited Countries**
+The Software may not be exported, re-exported, or transferred to:
+- Countries subject to U.S. sanctions or embargoes
+- Individuals or entities on restricted party lists
+- End-users engaged in prohibited activities
+- Military or defense applications without authorization
+
+### ✅ **9.3 Compliance Responsibility**
+**You are responsible for ensuring compliance** with all applicable export control laws and regulations.
+
+---
+
+## ⏰ **10. TERMINATION**
+
+### 🔚 **10.1 Automatic Termination**
+This license **terminates immediately and automatically** upon:
+- Any breach of license terms or restrictions
+- Commercial use without proper licensing
+- Reverse engineering or unauthorized modification
+- Distribution or sublicensing without permission
+- Use for illegal or malicious purposes
+
+### 📋 **10.2 Termination Obligations**
+Upon termination, you must **immediately**:
+- **Cease all use** of the Software
+- **Destroy all copies** in your possession or control
+- **Remove from all systems** and storage devices
+- **Certify destruction** in writing if requested
+
+### ⚖️ **10.3 Survival**
+The following sections **survive termination**:
+- Intellectual Property Rights (Section 4)
+- Warranty Disclaimer (Section 6)
+- Limitation of Liability (Section 7)
+- Governing Law (Section 13)
+
+---
+
+## 📚 **11. THIRD-PARTY COMPONENTS**
+
+### 🔗 **11.1 Open Source Components**
+The Software includes third-party open source components, each subject to their respective licenses. A complete list is available in:
+- **THIRD-PARTY-LICENSES.md** file
+- **About section** of the software
+- **Legal notices** in documentation
+
+### ⚖️ **11.2 Component Compliance**
+You must comply with all third-party license terms. ZehraSec is not responsible for third-party component licensing violations.
+
+---
+
+## 📝 **12. ATTRIBUTION REQUIREMENTS**
+
+### 🔤 **12.1 Mandatory Attribution**
+When using under free license terms, you **MUST display** the following attribution:
+
+#### **Minimum Required Attribution**
+```
+Powered by ZehraSec Advanced Firewall
+Copyright © 2025 ZehraSec - Yashab Alam
+https://github.com/yashab-cyber/ZehraSec-Advanced-Firewall
+```
+
+#### **Placement Requirements**
+- **Visible location** in your application or system
+- **About page, credits section,** or startup screen
+- **Cannot be hidden** or require user action to view
+- **Must remain intact** and unmodified
+
+### 🚫 **12.2 Attribution Violations**
+Failure to provide proper attribution constitutes **copyright infringement** and will result in immediate license termination.
+
+---
+
+## 💼 **13. COMMERCIAL LICENSING**
+
+### 🏢 **13.1 Enterprise Solutions**
+For commercial use, contact our licensing team:
+
+**ZehraSec Licensing Department**
+- **Sales Team**: sales@zehrasec.com
+- **Enterprise Solutions**: enterprise@zehrasec.com
+- **Licensing Specialist**: licensing@zehrasec.com
+- **Partnership Inquiries**: partners@zehrasec.com
+- **Website**: https://www.zehrasec.com/licensing
+
+### 💰 **13.2 Pricing Tiers**
+
+#### 🆓 **Community Edition (Free)**
+- Personal and educational use only
+- Basic features with community support
+- Open source projects with attribution
+- **No commercial use permitted**
+
+#### 💼 **Professional Edition ($99/year per deployment)**
+- Small business use (up to 50 employees)
+- Email support with 48-hour response
+- Advanced configuration options
+- Priority security updates
+
+#### 🏢 **Enterprise Edition (Custom Pricing)**
+- Unlimited enterprise deployment
+- 24/7 premium support with SLA
+- Custom development and integration
+- Professional services and training
+- Compliance certification assistance
+
+#### 🌟 **Custom Solutions (Quote-based)**
+- White-label licensing opportunities
+- Custom feature development
+- Dedicated support and account management
+- On-site deployment and training
+- Partnership and reseller programs
+
+---
+
+## ⚖️ **14. GOVERNING LAW AND DISPUTE RESOLUTION**
+
+### 🏛️ **14.1 Governing Law**
+This Agreement shall be governed by and construed in accordance with:
+- **Laws of [Your Jurisdiction]** without regard to conflict of laws principles
+- **International copyright treaties** and conventions
+- **Applicable intellectual property laws**
+
+### 🤝 **14.2 Dispute Resolution**
+**Disputes shall be resolved in the following order:**
+
+1. **Direct Negotiation** - Good faith negotiations between parties
+2. **Mediation** - Binding mediation through recognized service
+3. **Arbitration** - Commercial arbitration under applicable rules
+4. **Court Proceedings** - As a last resort in appropriate jurisdiction
+
+### 📍 **14.3 Jurisdiction and Venue**
+All legal proceedings shall be conducted in **[Your Local Courts]** with exclusive jurisdiction and venue.
+
+---
+## 📞 **15. CONTACT INFORMATION**
+
+### 🏢 **ZehraSec**
+**Primary Business Contact:**
+- **Business Email**: sales@zehrasec.com
+- **Support Email**: support@zehrasec.com  
+- **Licensing Email**: licensing@zehrasec.com
+- **Legal Email**: legal@zehrasec.com
+- **Website**: https://www.zehrasec.com
+- **Licensing Portal**: https://licensing.zehrasec.com
+
+### 👨‍💻 **Founder & CEO: Yashab Alam**
+**Direct Contact:**
+- **Personal Email**: yashabalam707@gmail.com
+- **Professional Profile**: https://www.zehrasec.com/team/ceo
+- **GitHub**: [@yashab-cyber](https://github.com/yashab-cyber)
+- **LinkedIn**: [Yashab Alam](https://www.linkedin.com/in/yashabalam)
+
+### 📱 **Official Social Media**
+**Company Accounts:**
+- **Instagram**: [@_zehrasec](https://www.instagram.com/_zehrasec)
+- **Facebook**: [ZehraSec Official](https://www.facebook.com/profile.php?id=61575580721849)
+- **Twitter/X**: [@zehrasec](https://x.com/zehrasec)
+- **LinkedIn**: [ZehraSec Company](https://www.linkedin.com/company/zehrasec)
+
+**Founder's Personal:**
+- **Instagram**: [@yashab.alam](https://www.instagram.com/yashab.alam)
+- **Twitter/X**: [@yashabalam](https://twitter.com/yashabalam)
+
+### 🌐 **Business Information**
+- **Company Type**: Sole Proprietorship
+- **Industry**: Cybersecurity Software Development
+- **Founded**: 2025
+- **Headquarters**: [Location - Update as needed]
+- **Business Registration**: [Registration Number - Update as needed]
+
+---
+
+## 📋 **16. LICENSING TIERS AND PRICING**
+
+### 🆓 **Community Edition (FREE)**
+**Permitted Uses:**
+- Personal, non-commercial use by individuals
+- Educational institutions for teaching and research
+- Open source projects with proper attribution
+- Security research and academic studies
+
+**Features:**
+- Basic 6-layer firewall protection
+- Community support through GitHub
+- Standard documentation access
+- Basic threat detection capabilities
+
+**Restrictions:**
+- **NO commercial use permitted**
+- Attribution required for all uses
+- No professional support included
+- Limited configuration options
+
+### 💼 **Professional Edition ($99/year per deployment)**
+**Target Users:**
+- Small businesses (up to 50 employees)
+- Professional developers
+- Small IT service providers
+- Independent security consultants
+
+**Features:**
+- Full 6-layer advanced protection
+- Email support (48-hour response time)
+- Advanced configuration options
+- Priority security updates
+- Professional documentation access
+- Basic compliance reporting
+
+**Support:**
+- Business hours email support
+- Priority bug fixes and patches
+- Access to professional forums
+- Basic integration assistance
+
+### 🏢 **Enterprise Edition (Custom Pricing)**
+**Target Users:**
+- Large corporations and organizations
+- Government agencies
+- Critical infrastructure providers
+- Managed Security Service Providers (MSSPs)
+
+**Features:**
+- Unlimited deployment rights
+- Full feature set with advanced AI/ML
+- 24/7 premium support with SLA
+- Custom development services
+- Professional services and training
+- Compliance certification assistance
+- White-label options available
+
+**Support:**
+- Dedicated technical account manager
+- 24/7 phone and email support
+- Guaranteed response times (SLA)
+- On-site training and deployment
+- Custom integration development
+- Security consulting services
+
+### 🌟 **Custom Solutions (Quote-based)**
+**Special Arrangements:**
+- White-label licensing
+- OEM partnerships
+- Custom feature development
+- Regional reseller agreements
+- Government and military contracts
+- Critical infrastructure deployments
+
+**Contact for Pricing:**
+- Email: enterprise@zehrasec.com
+- Phone: [Available through website]
+- Custom quotes based on requirements
+
+---
+
+## 📋 **17. ATTRIBUTION REQUIREMENTS**
+
+### 🔤 **17.1 Required Attribution Formats**
+
+#### **Minimum Attribution (Free Users)**
+```
+Powered by ZehraSec Advanced Firewall
+Copyright © 2025 ZehraSec - Yashab Alam
+https://github.com/yashab-cyber/ZehraSec-Advanced-Firewall
+```
+
+#### **Complete Attribution (Recommended)**
+```
+This application uses ZehraSec Advanced Firewall
+Copyright © 2025 ZehraSec - Yashab Alam
+https://github.com/yashab-cyber/ZehraSec-Advanced-Firewall
+Licensed under Enterprise License Agreement
+Version 3.0.0 - Advanced 6-Layer Security System
+```
+
+#### **Academic Citation Format**
+```
+Alam, Y. (2025). ZehraSec Advanced Firewall: Enterprise-Grade 6-Layer Security System. 
+ZehraSec. Available at: https://github.com/yashab-cyber/ZehraSec-Advanced-Firewall
+```
+
+### 📍 **17.2 Attribution Placement Requirements**
+
+**Software Applications:**
+- About page or information section
+- Credits or acknowledgments page
+- Startup screen or splash page
+- Help documentation or user manual
+
+**Websites and Web Applications:**
+- Footer section of main pages
+- Credits or legal page
+- About us or technology page
+- Terms of service or legal notices
+
+**Documentation and Research:**
+- README files and project documentation
+- Research papers and publications
+- Technical reports and whitepapers
+- Training materials and presentations
+
+**Open Source Projects:**
+- LICENSE or CREDITS file
+- README.md file
+- Package.json or setup.py files
+- Documentation website
+
+### ⚠️ **17.3 Attribution Violations**
+**Failure to provide proper attribution constitutes:**
+- Copyright infringement under international law
+- Breach of license agreement terms
+- Grounds for immediate license termination
+- Potential legal action for damages
+
+---
+
+## 🔍 **18. VERIFICATION AND COMPLIANCE**
+
+### 📊 **18.1 License Verification**
+ZehraSec reserves the right to:
+- **Audit license compliance** with reasonable notice
+- **Request usage documentation** from commercial users
+- **Verify attribution requirements** for free users
+- **Monitor software usage** through automated systems
+
+### 🛡️ **18.2 Compliance Monitoring**
+We employ various methods to ensure compliance:
+- **Automated license verification** systems
+- **Usage analytics and reporting** (anonymized)
+- **Community reporting** of violations
+- **Legal monitoring services** for unauthorized use
+
+### ⚖️ **18.3 Violation Response**
+Upon discovering violations, we will:
+1. **Send notice** of violation with opportunity to cure
+2. **Provide reasonable time** to come into compliance
+3. **Terminate license** if violations continue
+4. **Pursue legal remedies** as appropriate
+
+---
+
+## 📚 **19. ADDITIONAL LEGAL TERMS**
+
+### 🔗 **19.1 Entire Agreement**
+This Agreement constitutes the **entire agreement** between the parties and supersedes all prior or contemporaneous understandings regarding the subject matter.
+
+### ✏️ **19.2 Amendments**
+This Agreement may only be **amended in writing** signed by both parties or through updated license terms posted on our website with reasonable notice.
+
+### ⚖️ **19.3 Severability**
+If any provision is found **unenforceable**, the remainder of the Agreement shall remain in full force and effect.
+
+### 🤝 **19.4 Waiver**
+Failure to enforce any provision does **not constitute a waiver** of our rights to enforce that or any other provision in the future.
+
+### 📋 **19.5 Assignment**
+You may **not assign** this license without our prior written consent. We may assign our rights and obligations without restriction.
+
+### 🌍 **19.6 Force Majeure**
+Neither party shall be liable for delays or failures due to **circumstances beyond reasonable control**, including natural disasters, war, terrorism, or government actions.
+
+---
+
+## 📅 **20. VERSION INFORMATION**
+
+- **License Version**: 3.0.0
+- **Software Version**: 3.0.0
+- **Effective Date**: June 19, 2025
+- **Last Updated**: June 19, 2025
+- **Next Review**: December 2025
+- **Supersedes**: All previous license versions
+
+### 📝 **Version History**
+- **v3.0.0** (June 2025): Comprehensive enterprise license with strict terms
+- **v2.0.0** (May 2025): Enhanced commercial licensing options
+- **v1.0.0** (April 2025): Initial enterprise license agreement
+
+---
+
+**⚠️ CRITICAL NOTICE: By downloading, installing, accessing, or using this software in any way, you acknowledge that you have read, understood, and agree to be legally bound by ALL terms and conditions of this Enterprise License Agreement. If you do not agree to these terms, you are NOT authorized to use this software and must immediately cease all use and destroy all copies.**
+
+**🚨 COMMERCIAL USE WARNING: This software is NOT free for commercial use. Any commercial use without proper licensing constitutes copyright infringement and will result in immediate legal action.**
+
+---
+
+**ZEHRASEC - ENTERPRISE CYBERSECURITY INNOVATION**  
+*Protecting Digital Infrastructure Since 2025*  
+*Copyright © 2025 - All Rights Reserved*
+
+---
+
+*This license agreement is legally binding and enforceable under international copyright law. Violations may result in severe civil and criminal penalties. Consult with legal counsel if you have questions about compliance.*
