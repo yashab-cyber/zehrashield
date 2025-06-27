@@ -1,0 +1,338 @@
+{
+  "firewall": {
+    "enabled": true,
+    "mode": "production",
+    "log_level": "INFO",
+    "performance_mode": "high",
+    "auto_update": true,
+    "backup_config": true
+  },
+  "network": {
+    "interfaces": ["all"],
+    "packet_capture": {
+      "enabled": true,
+      "buffer_size": "100MB",
+      "max_packets": 1000000
+    },
+    "traffic_analysis": {
+      "enabled": true,
+      "deep_inspection": true,
+      "protocol_decode": true
+    }
+  },
+  "layers": {
+    "layer1_packet_filter": {
+      "enabled": true,
+      "priority": 1,
+      "rate_limit_per_ip": 100,
+      "rate_limit_global": 10000,
+      "blocked_ports": [1337, 31337, 6667, 6668, 6669],
+      "allowed_ports": [22, 80, 443, 8443],
+      "geo_blocking": {
+        "enabled": true,
+        "blocked_countries": ["CN", "RU", "KP"],
+        "whitelist_countries": ["US", "CA", "GB", "DE", "FR"]
+      },
+      "packet_size_limits": {
+        "min_size": 20,
+        "max_size": 65535
+      }
+    },
+    "layer2_application_gateway": {
+      "enabled": true,
+      "priority": 2,
+      "protocols": {
+        "http": {
+          "enabled": true,
+          "max_request_size": "10MB",
+          "blocked_methods": ["TRACE", "OPTIONS"],
+          "header_inspection": true
+        },
+        "https": {
+          "enabled": true,
+          "ssl_inspection": true,
+          "cert_validation": true,
+          "min_tls_version": "1.2"
+        },
+        "dns": {
+          "enabled": true,
+          "malware_filtering": true,
+          "dns_over_https": true,
+          "blocked_domains": ["malware.com", "phishing.net"]
+        },
+        "ftp": {
+          "enabled": true,
+          "active_mode": false,
+          "passive_mode": true
+        }
+      },
+      "content_filtering": {
+        "enabled": true,
+        "categories": ["malware", "phishing", "adult", "gambling"],
+        "custom_rules": []
+      }
+    },
+    "layer3_ids_ips": {
+      "enabled": true,
+      "priority": 3,
+      "auto_block": true,
+      "threat_threshold": 50,
+      "detection_methods": {
+        "signature_based": {
+          "enabled": true,
+          "update_interval": 3600,
+          "custom_signatures": true
+        },
+        "anomaly_based": {
+          "enabled": true,
+          "sensitivity": "medium",
+          "learning_period": 86400
+        },
+        "behavioral_analysis": {
+          "enabled": true,
+          "ml_models": true,
+          "user_profiling": true
+        }
+      },
+      "attack_types": {
+        "sql_injection": true,
+        "xss": true,
+        "directory_traversal": true,
+        "command_injection": true,
+        "port_scanning": true,
+        "dos_attacks": true,
+        "brute_force": true
+      }
+    },
+    "layer4_threat_intelligence": {
+      "enabled": true,
+      "priority": 4,
+      "feeds": {
+        "mitre_attack": {
+          "enabled": true,
+          "update_interval": 21600
+        },
+        "stix_taxii": {
+          "enabled": true,
+          "servers": []
+        },
+        "commercial": {
+          "enabled": false,
+          "api_keys": {}
+        },
+        "community": {
+          "enabled": true,
+          "sources": ["abuse.ch", "emergingthreats.net"]
+        }
+      },
+      "machine_learning": {
+        "enabled": true,
+        "models": {
+          "threat_classification": true,
+          "anomaly_detection": true,
+          "behavioral_analysis": true
+        },
+        "auto_training": true,
+        "model_update_interval": 86400
+      },
+      "reputation_scoring": {
+        "enabled": true,
+        "ip_reputation": true,
+        "domain_reputation": true,
+        "file_reputation": true
+      }
+    },
+    "layer5_network_access_control": {
+      "enabled": true,
+      "priority": 5,
+      "zero_trust": {
+        "enabled": true,
+        "continuous_verification": true,
+        "device_certificates": true
+      },
+      "device_authentication": {
+        "enabled": true,
+        "certificate_based": true,
+        "multi_factor": true,
+        "device_fingerprinting": true
+      },
+      "network_segmentation": {
+        "enabled": true,
+        "vlan_isolation": true,
+        "micro_segmentation": true,
+        "policy_enforcement": true
+      },
+      "access_policies": {
+        "default_deny": true,
+        "least_privilege": true,
+        "time_based_access": true,
+        "location_based_access": true
+      }
+    },
+    "layer6_siem_integration": {
+      "enabled": true,
+      "priority": 6,
+      "logging": {
+        "enabled": true,
+        "log_level": "INFO",
+        "structured_logging": true,
+        "log_rotation": true,
+        "max_log_size": "100MB",
+        "retention_days": 90
+      },
+      "siem_platforms": {
+        "splunk": {
+          "enabled": false,
+          "host": "",
+          "port": 8088,
+          "token": "",
+          "index": "zehrashield"
+        },
+        "elk": {
+          "enabled": false,
+          "elasticsearch_host": "",
+          "elasticsearch_port": 9200,
+          "kibana_host": "",
+          "logstash_host": ""
+        },
+        "qradar": {
+          "enabled": false,
+          "host": "",
+          "api_token": ""
+        }
+      },
+      "incident_response": {
+        "enabled": true,
+        "auto_response": true,
+        "escalation_rules": [],
+        "notification_channels": {
+          "email": {
+            "enabled": false,
+            "smtp_server": "",
+            "recipients": []
+          },
+          "slack": {
+            "enabled": false,
+            "webhook_url": "",
+            "channel": "#security"
+          },
+          "webhook": {
+            "enabled": false,
+            "url": "",
+            "headers": {}
+          }
+        }
+      }
+    }
+  },
+  "web_console": {
+    "enabled": true,
+    "host": "0.0.0.0",
+    "port": 8443,
+    "ssl": {
+      "enabled": true,
+      "cert_file": "certs/server.crt",
+      "key_file": "certs/server.key",
+      "ca_file": ""
+    },
+    "authentication": {
+      "enabled": true,
+      "session_timeout": 3600,
+      "max_failed_attempts": 5,
+      "lockout_duration": 300
+    },
+    "features": {
+      "real_time_monitoring": true,
+      "threat_visualization": true,
+      "log_analysis": true,
+      "report_generation": true,
+      "configuration_management": true
+    }
+  },
+  "api": {
+    "enabled": true,
+    "host": "127.0.0.1",
+    "port": 5000,
+    "authentication": {
+      "enabled": true,
+      "api_keys": {},
+      "jwt_secret": "your-jwt-secret-here",
+      "token_expiry": 3600
+    },
+    "rate_limiting": {
+      "enabled": true,
+      "requests_per_minute": 100,
+      "burst_limit": 200
+    }
+  },
+  "machine_learning": {
+    "enabled": true,
+    "models_path": "data/ml_models",
+    "training": {
+      "auto_training": true,
+      "training_interval": 86400,
+      "min_samples": 1000
+    },
+    "inference": {
+      "batch_size": 100,
+      "confidence_threshold": 0.8,
+      "real_time": true
+    }
+  },
+  "performance": {
+    "monitoring": {
+      "enabled": true,
+      "metrics_interval": 60,
+      "resource_alerts": true
+    },
+    "optimization": {
+      "auto_tuning": true,
+      "memory_limit": "2GB",
+      "cpu_cores": 0,
+      "packet_processing_threads": 4
+    }
+  },
+  "compliance": {
+    "frameworks": {
+      "gdpr": {
+        "enabled": false,
+        "data_retention": 365,
+        "anonymization": true
+      },
+      "hipaa": {
+        "enabled": false,
+        "encryption": true,
+        "audit_logging": true
+      },
+      "pci_dss": {
+        "enabled": false,
+        "secure_transmission": true,
+        "access_controls": true
+      },
+      "sox": {
+        "enabled": false,
+        "financial_controls": true,
+        "audit_trails": true
+      }
+    },
+    "reporting": {
+      "enabled": true,
+      "report_interval": 86400,
+      "compliance_checks": true
+    }
+  },
+  "backup": {
+    "enabled": true,
+    "backup_interval": 86400,
+    "backup_path": "backups",
+    "retention_days": 30,
+    "compression": true,
+    "encryption": true
+  },
+  "updates": {
+    "auto_update": true,
+    "check_interval": 86400,
+    "update_channel": "stable",
+    "backup_before_update": true
+  }
+}

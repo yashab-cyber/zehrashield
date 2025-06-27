@@ -1,0 +1,189 @@
+{
+  "ml_models": {
+    "enabled": true,
+    "models_path": "data/ml_models",
+    "auto_training": true,
+    "training_schedule": "daily",
+    "models": {
+      "anomaly_detection": {
+        "enabled": true,
+        "algorithm": "isolation_forest",
+        "parameters": {
+          "contamination": 0.1,
+          "n_estimators": 100,
+          "max_samples": "auto",
+          "max_features": 1.0
+        },
+        "features": [
+          "packet_size",
+          "packet_rate",
+          "connection_duration",
+          "bytes_transferred",
+          "port_number",
+          "protocol_type"
+        ],
+        "training_data": {
+          "source": "network_traffic",
+          "window_size": 86400,
+          "min_samples": 10000
+        }
+      },
+      "threat_classification": {
+        "enabled": true,
+        "algorithm": "random_forest",
+        "parameters": {
+          "n_estimators": 200,
+          "max_depth": 10,
+          "min_samples_split": 5,
+          "min_samples_leaf": 2
+        },
+        "features": [
+          "source_ip_reputation",
+          "destination_port",
+          "payload_entropy",
+          "connection_flags",
+          "geographic_location",
+          "time_of_day"
+        ],
+        "classes": [
+          "benign",
+          "malware",
+          "dos_attack",
+          "port_scan",
+          "sql_injection",
+          "xss_attack",
+          "brute_force"
+        ],
+        "training_data": {
+          "source": "labeled_attacks",
+          "balance_classes": true,
+          "augmentation": true
+        }
+      },
+      "behavioral_analysis": {
+        "enabled": true,
+        "algorithm": "lstm",
+        "parameters": {
+          "sequence_length": 50,
+          "hidden_units": 128,
+          "learning_rate": 0.001,
+          "epochs": 100,
+          "batch_size": 32
+        },
+        "features": [
+          "user_activity_patterns",
+          "network_access_patterns",
+          "application_usage",
+          "data_transfer_patterns",
+          "time_based_behavior"
+        ],
+        "training_data": {
+          "source": "user_behavior",
+          "window_size": 604800,
+          "normalization": "min_max"
+        }
+      },
+      "malware_detection": {
+        "enabled": true,
+        "algorithm": "gradient_boosting",
+        "parameters": {
+          "n_estimators": 100,
+          "learning_rate": 0.1,
+          "max_depth": 6,
+          "subsample": 0.8
+        },
+        "features": [
+          "file_entropy",
+          "pe_header_features",
+          "string_features",
+          "import_table_features",
+          "behavioral_features"
+        ],
+        "training_data": {
+          "source": "malware_samples",
+          "feature_extraction": "automated",
+          "sample_balance": true
+        }
+      },
+      "network_profiling": {
+        "enabled": true,
+        "algorithm": "dbscan",
+        "parameters": {
+          "eps": 0.5,
+          "min_samples": 5,
+          "metric": "euclidean"
+        },
+        "features": [
+          "traffic_volume",
+          "protocol_distribution",
+          "port_usage",
+          "connection_patterns",
+          "geographic_distribution"
+        ],
+        "training_data": {
+          "source": "network_baseline",
+          "learning_period": 604800,
+          "update_frequency": 86400
+        }
+      }
+    },
+    "ensemble": {
+      "enabled": true,
+      "voting_strategy": "weighted",
+      "confidence_threshold": 0.7,
+      "models": [
+        "anomaly_detection",
+        "threat_classification",
+        "behavioral_analysis"
+      ],
+      "weights": {
+        "anomaly_detection": 0.3,
+        "threat_classification": 0.4,
+        "behavioral_analysis": 0.3
+      }
+    },
+    "training": {
+      "auto_retrain": true,
+      "retrain_threshold": 0.1,
+      "cross_validation": true,
+      "validation_split": 0.2,
+      "performance_tracking": true,
+      "model_versioning": true
+    },
+    "inference": {
+      "real_time": true,
+      "batch_processing": true,
+      "batch_size": 1000,
+      "confidence_reporting": true,
+      "explanation": true
+    },
+    "data_preprocessing": {
+      "normalization": {
+        "enabled": true,
+        "method": "standard_scaler"
+      },
+      "feature_selection": {
+        "enabled": true,
+        "method": "mutual_info",
+        "n_features": 50
+      },
+      "dimensionality_reduction": {
+        "enabled": false,
+        "method": "pca",
+        "n_components": 20
+      }
+    },
+    "performance_monitoring": {
+      "enabled": true,
+      "metrics": [
+        "accuracy",
+        "precision",
+        "recall",
+        "f1_score",
+        "auc_roc"
+      ],
+      "alert_threshold": 0.05,
+      "drift_detection": true
+    }
+  }
+}

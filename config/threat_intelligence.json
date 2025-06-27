@@ -1,0 +1,103 @@
+{
+  "threat_intelligence": {
+    "enabled": true,
+    "update_interval": 3600,
+    "sources": {
+      "mitre_attack": {
+        "enabled": true,
+        "url": "https://attack.mitre.org/stix/enterprise-attack.json",
+        "format": "stix",
+        "weight": 1.0
+      },
+      "emerging_threats": {
+        "enabled": true,
+        "url": "https://rules.emergingthreats.net/blockrules/compromised-ips.txt",
+        "format": "text",
+        "weight": 0.8
+      },
+      "abuse_ch": {
+        "enabled": true,
+        "urls": {
+          "malware_domains": "https://urlhaus.abuse.ch/downloads/hostfile/",
+          "malware_ips": "https://feodotracker.abuse.ch/downloads/ipblocklist.txt"
+        },
+        "format": "text",
+        "weight": 0.9
+      },
+      "alienvault": {
+        "enabled": false,
+        "url": "https://reputation.alienvault.com/reputation.generic",
+        "api_key": "",
+        "format": "csv",
+        "weight": 0.7
+      },
+      "virustotal": {
+        "enabled": false,
+        "api_key": "",
+        "daily_quota": 1000,
+        "weight": 0.9
+      },
+      "custom_feeds": []
+    },
+    "indicators": {
+      "ip_addresses": {
+        "enabled": true,
+        "blacklist": [],
+        "whitelist": ["127.0.0.1", "::1"],
+        "reputation_threshold": 0.5
+      },
+      "domains": {
+        "enabled": true,
+        "blacklist": [],
+        "whitelist": [],
+        "reputation_threshold": 0.5
+      },
+      "file_hashes": {
+        "enabled": true,
+        "hash_types": ["md5", "sha1", "sha256"],
+        "blacklist": [],
+        "reputation_threshold": 0.5
+      },
+      "urls": {
+        "enabled": true,
+        "blacklist": [],
+        "whitelist": [],
+        "reputation_threshold": 0.5
+      }
+    },
+    "stix_taxii": {
+      "enabled": true,
+      "servers": [
+        {
+          "name": "MITRE ATT&CK",
+          "url": "https://cti-taxii.mitre.org/taxii/",
+          "username": "",
+          "password": "",
+          "collections": ["enterprise-attack"]
+        }
+      ],
+      "poll_interval": 21600
+    },
+    "local_intelligence": {
+      "enabled": true,
+      "learning_enabled": true,
+      "learning_threshold": 10,
+      "reputation_decay": 0.1
+    },
+    "analysis": {
+      "correlation": {
+        "enabled": true,
+        "time_window": 3600,
+        "min_occurrences": 3
+      },
+      "attribution": {
+        "enabled": true,
+        "confidence_threshold": 0.7
+      },
+      "campaign_detection": {
+        "enabled": true,
+        "similarity_threshold": 0.8
+      }
+    }
+  }
+}

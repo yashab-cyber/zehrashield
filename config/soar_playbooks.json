@@ -1,0 +1,347 @@
+{
+  "soar": {
+    "enabled": true,
+    "orchestration_engine": {
+      "enabled": true,
+      "max_concurrent_playbooks": 10,
+      "execution_timeout": 3600,
+      "retry_attempts": 3
+    },
+    "playbooks": [
+      {
+        "id": "malware_detection_response",
+        "name": "Malware Detection Response",
+        "description": "Automated response to malware detection events",
+        "enabled": true,
+        "triggers": [
+          {
+            "type": "threat_detected",
+            "conditions": {
+              "threat_type": "malware",
+              "confidence": ">= 0.8"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "isolate_host",
+            "type": "network_isolation",
+            "parameters": {
+              "target": "source_ip",
+              "duration": 3600
+            }
+          },
+          {
+            "id": "block_hash",
+            "type": "threat_intelligence_update",
+            "parameters": {
+              "indicator_type": "file_hash",
+              "action": "block"
+            }
+          },
+          {
+            "id": "create_incident",
+            "type": "incident_creation",
+            "parameters": {
+              "severity": "high",
+              "category": "malware",
+              "assignee": "security_team"
+            }
+          },
+          {
+            "id": "notify_team",
+            "type": "notification",
+            "parameters": {
+              "channels": ["email", "slack"],
+              "template": "malware_alert"
+            }
+          }
+        ],
+        "conditions": [
+          {
+            "action_id": "block_hash",
+            "depends_on": ["isolate_host"],
+            "condition": "success"
+          }
+        ]
+      },
+      {
+        "id": "brute_force_response",
+        "name": "Brute Force Attack Response",
+        "description": "Automated response to brute force attacks",
+        "enabled": true,
+        "triggers": [
+          {
+            "type": "attack_detected",
+            "conditions": {
+              "attack_type": "brute_force",
+              "failed_attempts": ">= 5"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "block_source_ip",
+            "type": "firewall_rule",
+            "parameters": {
+              "action": "block",
+              "target": "source_ip",
+              "duration": 1800
+            }
+          },
+          {
+            "id": "increase_monitoring",
+            "type": "monitoring_adjustment",
+            "parameters": {
+              "target": "source_ip",
+              "level": "high",
+              "duration": 3600
+            }
+          },
+          {
+            "id": "log_incident",
+            "type": "incident_logging",
+            "parameters": {
+              "severity": "medium",
+              "category": "authentication"
+            }
+          }
+        ]
+      },
+      {
+        "id": "data_exfiltration_response",
+        "name": "Data Exfiltration Response",
+        "description": "Response to potential data exfiltration attempts",
+        "enabled": true,
+        "triggers": [
+          {
+            "type": "anomaly_detected",
+            "conditions": {
+              "anomaly_type": "data_transfer",
+              "volume": "> 1GB",
+              "destination": "external"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "throttle_bandwidth",
+            "type": "bandwidth_control",
+            "parameters": {
+              "target": "source_ip",
+              "limit": "1Mbps",
+              "duration": 600
+            }
+          },
+          {
+            "id": "capture_traffic",
+            "type": "traffic_capture",
+            "parameters": {
+              "target": "source_ip",
+              "duration": 300,
+              "full_packet": true
+            }
+          },
+          {
+            "id": "alert_incident_response",
+            "type": "escalation",
+            "parameters": {
+              "team": "incident_response",
+              "priority": "urgent"
+            }
+          }
+        ]
+      },
+      {
+        "id": "vulnerability_exploitation",
+        "name": "Vulnerability Exploitation Response",
+        "description": "Response to vulnerability exploitation attempts",
+        "enabled": true,
+        "triggers": [
+          {
+            "type": "exploit_detected",
+            "conditions": {
+              "cve_score": ">= 7.0"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "virtual_patching",
+            "type": "waf_rule",
+            "parameters": {
+              "rule_type": "virtual_patch",
+              "vulnerability": "detected_cve"
+            }
+          },
+          {
+            "id": "asset_identification",
+            "type": "asset_scan",
+            "parameters": {
+              "target": "vulnerable_systems",
+              "scan_type": "vulnerability"
+            }
+          },
+          {
+            "id": "patch_management",
+            "type": "patch_deployment",
+            "parameters": {
+              "urgency": "high",
+              "auto_deploy": false
+            }
+          }
+        ]
+      },
+      {
+        "id": "phishing_response",
+        "name": "Phishing Attack Response",
+        "description": "Automated response to phishing attempts",
+        "enabled": true,
+        "triggers": [
+          {
+            "type": "phishing_detected",
+            "conditions": {
+              "confidence": ">= 0.7"
+            }
+          }
+        ],
+        "actions": [
+          {
+            "id": "block_domain",
+            "type": "dns_filtering",
+            "parameters": {
+              "action": "block",
+              "target": "malicious_domain"
+            }
+          },
+          {
+            "id": "quarantine_email",
+            "type": "email_security",
+            "parameters": {
+              "action": "quarantine",
+              "target": "email_message"
+            }
+          },
+          {
+            "id": "user_notification",
+            "type": "security_awareness",
+            "parameters": {
+              "target": "affected_users",
+              "message": "phishing_warning"
+            }
+          }
+        ]
+      }
+    ],
+    "integrations": {
+      "siem_platforms": {
+        "splunk": {
+          "enabled": false,
+          "api_endpoint": "",
+          "authentication": {
+            "type": "token",
+            "token": ""
+          }
+        },
+        "qradar": {
+          "enabled": false,
+          "api_endpoint": "",
+          "authentication": {
+            "type": "basic",
+            "username": "",
+            "password": ""
+          }
+        },
+        "elk": {
+          "enabled": false,
+          "elasticsearch_endpoint": "",
+          "authentication": {
+            "type": "api_key",
+            "api_key": ""
+          }
+        }
+      },
+      "ticketing_systems": {
+        "jira": {
+          "enabled": false,
+          "url": "",
+          "project_key": "",
+          "authentication": {
+            "type": "token",
+            "token": ""
+          }
+        },
+        "servicenow": {
+          "enabled": false,
+          "instance_url": "",
+          "authentication": {
+            "type": "oauth",
+            "client_id": "",
+            "client_secret": ""
+          }
+        }
+      },
+      "communication_platforms": {
+        "slack": {
+          "enabled": false,
+          "webhook_url": "",
+          "channels": {
+            "general": "#security",
+            "critical": "#security-critical",
+            "incidents": "#incidents"
+          }
+        },
+        "microsoft_teams": {
+          "enabled": false,
+          "webhook_url": "",
+          "channels": {
+            "general": "Security Team",
+            "critical": "Security Critical",
+            "incidents": "Incident Response"
+          }
+        }
+      },
+      "threat_intelligence": {
+        "misp": {
+          "enabled": false,
+          "url": "",
+          "api_key": "",
+          "auto_publish": false
+        },
+        "opencti": {
+          "enabled": false,
+          "url": "",
+          "api_key": ""
+        }
+      }
+    },
+    "notification_templates": {
+      "malware_alert": {
+        "title": "Malware Detected - {threat_name}",
+        "body": "Malware detected on host {source_ip}. Threat: {threat_name}. Confidence: {confidence}. Automated response initiated.",
+        "priority": "high"
+      },
+      "brute_force_alert": {
+        "title": "Brute Force Attack - {source_ip}",
+        "body": "Brute force attack detected from {source_ip}. Failed attempts: {failed_attempts}. Source has been blocked.",
+        "priority": "medium"
+      },
+      "phishing_warning": {
+        "title": "Phishing Attempt Blocked",
+        "body": "A phishing attempt targeting your organization has been detected and blocked. Domain: {malicious_domain}. Please remain vigilant.",
+        "priority": "medium"
+      }
+    },
+    "metrics": {
+      "enabled": true,
+      "collection_interval": 300,
+      "metrics": [
+        "playbook_execution_time",
+        "playbook_success_rate",
+        "false_positive_rate",
+        "response_time",
+        "threat_mitigation_rate"
+      ]
+    }
+  }
+}

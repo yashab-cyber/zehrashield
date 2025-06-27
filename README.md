@@ -144,7 +144,7 @@ sudo chmod +x install.sh
 sudo ./install.sh
 
 # Start the firewall
-sudo zehrasec start
+sudo zehrashield-cli start
 
 # Access web console
 https://localhost:8443
@@ -156,7 +156,7 @@ https://localhost:8443
 .\install.ps1
 
 # Start service
-Start-Service ZehraSecFirewall
+Start-Service ZehraShieldFirewall
 
 # Access web console
 https://localhost:8443

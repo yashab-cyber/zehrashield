@@ -1,0 +1,20 @@
+{
+  "timestamp": "2025-06-27 09:33:16",
+  "total_tests": 12,
+  "passed": 3,
+  "failed": 1,
+  "errors": [
+    "test_02_logging_system (__main__.ZehraShieldIntegrationTest.test_02_logging_system)",
+    "test_03_layer_initialization (__main__.ZehraShieldIntegrationTest.test_03_layer_initialization)",
+    "test_05_firewall_engine_integration (__main__.ZehraShieldIntegrationTest.test_05_firewall_engine_integration)",
+    "test_08_configuration_validation (__main__.ZehraShieldIntegrationTest.test_08_configuration_validation)",
+    "test_09_packet_processing_simulation (__main__.ZehraShieldIntegrationTest.test_09_packet_processing_simulation)",
+    "test_10_end_to_end_workflow (__main__.ZehraShieldIntegrationTest.test_10_end_to_end_workflow)",
+    "test_11_performance_baseline (__main__.ZehraShieldIntegrationTest.test_11_performance_baseline)",
+    "test_12_error_handling (__main__.ZehraShieldIntegrationTest.test_12_error_handling)"
+  ],
+  "success_rate": 25.0,
+  "failures": [
+    "test_01_configuration_loading (__main__.ZehraShieldIntegrationTest.test_01_configuration_loading)"
+  ]
+}
