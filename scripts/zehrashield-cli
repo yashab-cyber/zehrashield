@@ -1,8 +1,8 @@
 #!/bin/bash
-"""
-ZehraShield CLI Wrapper
-This script provides a system-wide command 'zehrashield-cli'
-"""
+#
+# ZehraShield CLI Wrapper
+# This script provides a system-wide command 'zehrashield-cli'
+#
 
 # Get the directory where ZehraShield is installed
 INSTALL_DIR="/opt/zehrashield"
@@ -16,4 +16,10 @@ if [ ! -f "$CLI_SCRIPT" ]; then
 fi
 
 # Execute the CLI with all passed arguments
-python3 "$CLI_SCRIPT" "$@"
+if [ -f "$INSTALL_DIR/venv/bin/python" ]; then
+    # Use virtual environment if available
+    exec "$INSTALL_DIR/venv/bin/python" "$CLI_SCRIPT" "$@"
+else
+    # Fall back to system Python
+    exec python3 "$CLI_SCRIPT" "$@"
+fi

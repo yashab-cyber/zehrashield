@@ -17,8 +17,22 @@ import platform
 from typing import Dict, List, Set, Optional, Tuple
 from datetime import datetime, timedelta
 from dataclasses import dataclass
-from scapy.all import ARP, Ether, srp, get_if_list, get_if_addr
-import netifaces
+
+# Handle scapy import gracefully
+try:
+    from scapy.all import ARP, Ether, srp, get_if_list, get_if_addr
+    SCAPY_AVAILABLE = True
+except ImportError:
+    logging.warning("Scapy not available - device discovery limited")
+    SCAPY_AVAILABLE = False
+
+# Handle netifaces import gracefully
+try:
+    import netifaces
+    NETIFACES_AVAILABLE = True
+except ImportError:
+    logging.warning("netifaces not available - network interface detection limited")
+    NETIFACES_AVAILABLE = False
 import psutil
 from core.logger import security_logger
 
@@ -195,6 +209,10 @@ class NetworkAccessControlLayer:
     def _discover_devices(self):
         """Discover devices on all network interfaces."""
         try:
+            if not NETIFACES_AVAILABLE:
+                self.logger.warning("netifaces not available - using limited interface detection")
+                return
+                
             # Get all network interfaces
             interfaces = netifaces.interfaces()
             

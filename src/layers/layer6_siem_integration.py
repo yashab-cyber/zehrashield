@@ -20,9 +20,24 @@ from datetime import datetime, timedelta
 from dataclasses import dataclass, asdict
 from pathlib import Path
 import uuid
-from elasticsearch import Elasticsearch
-from email.mime.text import MimeText
-from email.mime.multipart import MimeMultipart
+
+# Handle elasticsearch import gracefully
+try:
+    from elasticsearch import Elasticsearch
+    ELASTICSEARCH_AVAILABLE = True
+except ImportError:
+    logging.warning("Elasticsearch not available - some SIEM features limited")
+    ELASTICSEARCH_AVAILABLE = False
+
+# Handle email imports gracefully
+try:
+    from email.mime.text import MimeText
+    from email.mime.multipart import MimeMultipart
+    import smtplib
+    EMAIL_AVAILABLE = True
+except ImportError:
+    logging.warning("Email modules not available - email alerts disabled")
+    EMAIL_AVAILABLE = False
 import smtplib
 from core.logger import security_logger
 
